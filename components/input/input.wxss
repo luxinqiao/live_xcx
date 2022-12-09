@@ -1,0 +1,226 @@
+.content {
+    position: fixed;
+    top: 0; left: 0;
+    width: 750rpx; height: 100%;
+}
+.message {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 750rpx; min-height: 100rpx;
+    background-color: #fff;
+    z-index: 100;
+}
+.inputMessage {
+    position: relative;
+    height: 100rpx;
+    display: flex;
+    align-items: center; 
+    box-shadow:0px -4px 18px 0px rgba(204,204,204,0.22);
+    background-color: #fff;
+}
+.inputMessage>input {
+    display: block;
+    padding: 0 78rpx 0 32rpx;  margin-left: 24rpx;
+    width: 530rpx; height: 72rpx;
+    line-height: 72rpx;
+    background-color: #F6F6F6;
+}
+.inputMessage>image {
+    position: absolute;
+    left: 486rpx;
+    width: 50rpx; height: 50rpx;
+}
+.inputMessage>view {
+    margin-left: 24rpx;
+    width:140rpx; height:68rpx;
+    background:rgba(255,44,121,1);
+    border-radius:34rpx;
+    text-align: center; line-height: 68rpx;
+    color: #fff; background-color: #ff2c79;
+    font-size: 28rpx;
+    letter-spacing: 2rpx;
+}
+
+.comments {
+    position: relative;
+    min-height: 100rpx;
+    padding: 14rpx 0;
+    box-shadow:0px -4px 18px 0px rgba(204,204,204,0.22);
+    background-color: #fff;
+}
+.comments>view:first-child {
+    position: relative;
+    padding: 0 78rpx 0 24rpx;  margin-left: 24rpx;
+    display: flex; align-items: center;
+    width: 562rpx; min-height: 72rpx;
+    line-height: 72rpx;
+    border-radius: 6rpx;
+    background-color: #F6F6F6;
+}
+.comments textarea {
+    width: 100%;
+    min-height: 40rpx;
+    max-height: 158rpx;
+    line-height: 28rpx;
+    font-size: 26rpx;
+    letter-spacing: 2rpx;
+}
+.comments textarea::-webkit-input-placeholder  {
+    height: 72rpx;
+    line-height: 72rpx;
+}
+.comments textarea::-moz-placeholder  {
+    height: 72rpx;
+    line-height: 72rpx;
+}
+.comments textarea::-ms-input-placeholder  {
+    height: 72rpx;
+    line-height: 72rpx;
+}
+.comments>image {
+    position: absolute;
+    left: 486rpx; top: 26rpx;
+    width: 50rpx; height: 50rpx;
+}
+.comments>view:last-child {
+    position: absolute;
+    bottom: 14rpx; right: 24rpx;
+    width: 120rpx; height: 72rpx;
+    text-align: center; line-height: 72rpx;
+	border-radius: 8rpx;
+    background:rgba(255,44,121,1); color: #fff;
+    font-size: 28rpx;
+    letter-spacing: 1rpx;
+}
+
+.emojiBox {
+    position: relative;
+    height: 200px;
+    padding: 10rpx 24rpx;
+    margin-bottom: -200px;
+    box-sizing: border-box;
+}
+  
+.emojiCell {
+    width: 9.09%;
+    height: 66rpx;
+    display: inline-block;
+}
+  
+.emojiCell image {
+    width: 23px;
+    height: 23px;
+    padding: 5px;
+    border-radius: 3px;
+}
+  
+.emojiMoveIn {
+    -webkit-animation: emojiMoveIn 0.3s forwards;
+    animation: emojiMoveIn 0.3s forwards;
+}
+  
+.emojiMoveOut {
+    -webkit-animation: emojiMoveOut 0.3s forwards;
+    animation: emojiMoveOut 0.3s forwards;
+}
+  
+.noEmojiMove {
+    -webkit-animation: none;
+    animation: none;
+}
+  
+@-webkit-keyframes emojiMoveIn {
+    0% {
+      margin-bottom: -200px;
+    }
+  
+    100% {
+      margin-bottom: 0;
+    }
+}
+  
+@keyframes emojiMoveIn {
+    0% {
+      margin-bottom: -200px;
+    }
+  
+    100% {
+      margin-bottom: 0;
+    }
+}
+  
+@-webkit-keyframes emojiMoveOut {
+    0% {
+        margin-bottom: 0;
+    }
+
+    100% {
+        margin-bottom: -200px;
+    }
+}
+
+@keyframes emojiMoveOut {
+    0% {
+        margin-bottom: 0;
+    }
+
+    100% {
+        margin-bottom: -200px;
+    }
+}
+
+.reward>view:first-child {
+    padding: 0 24rpx;
+    width: 468rpx;
+}
+.reward>image {
+    position: absolute;
+    left: 518rpx; top: 16rpx;
+    width: 70rpx; height: 70rpx;
+}
+.reward>view:last-child {
+    position: absolute;
+    top: 20rpx; right: 24rpx;
+    width:120rpx; height:60rpx;
+    background:rgba(255,44,121,1);
+    border-radius:8rpx;
+    text-align: center; line-height: 60rpx;
+    color: #fff;
+    font-size: 28rpx;
+    letter-spacing: 2rpx;
+}
+
+
+#sendComment {
+    position: absolute;
+    left: 0; right: 0;
+    padding: 26rpx 0;
+    min-height: 120rpx;
+    background-color: #fff;
+}
+#sendComment>view {
+    display: flex;
+    align-items: center;
+    float: left;
+    margin-left: 32rpx;
+    width: 538rpx; min-height: 68rpx;
+    border-radius: 8rpx;
+    background-color: #f6f6f6;
+}
+#sendComment>view>textarea {
+    padding: 0 32rpx;
+    width: 100%; min-height: 40rpx; max-height: 158rpx;
+    line-height: 28rpx;
+    font-size: 26rpx;
+    letter-spacing: 2rpx;
+}
+#sendComment>button {
+    position: absolute;
+    top: 28rpx; right: 32rpx;
+    width: 120rpx; height: 60rpx;
+    text-align: center; line-height: 60rpx;
+    border-radius: 30rpx;
+    color: #fff; background-color: #ff2c79;
+    font-size: 28rpx;
+    letter-spacing: 2rpx;
+}

@@ -1,0 +1,101 @@
+<!--
+ * 文件描述：我的主界面
+ * 创建人：殷俊
+ * 创建时间：2019-08-05
+-->
+<wxs module='md_dict' src='../../../utils/dict.wxs'></wxs>
+<wxs module='md_common' src='../../../utils/common.wxs'></wxs>
+<view id='main'>
+    <view class='top'>
+        <view wx:if='{{isShowLogin && isLogin}}'>
+            <view class='haslogin' wx:if="{{useInfoObj.uiRealNameAuthentication == '2'}}">
+                <image webp='true' src='{{imgUrl}}' bindtap='goChangeInfo'></image>
+                <view bindtap='goChangeInfo'>
+                    <view class='text_ellipsis'>
+                        <text class='text_ellipsis'>{{name}}</text>
+                        <image wx:if="{{isVip == '1' && isSvip != '1'}}" class="vipImage" src="/images/home/my/goldvip.png"></image>
+                        <image wx:if="{{isSvip == '1'}}" class="vipImage" src="/images/home/my/blackvip.png"></image>
+                    </view>
+                </view>
+                <text class='real' wx:if='{{useInfoObj.uiRealNameAuthentication}}' bindtap='goAuthentication'>{{md_dict.getRealName(useInfoObj.uiRealNameAuthentication)}}</text>
+            </view>
+
+            <view class='hasloginAuth' wx:else>
+                <image webp='true' src='{{imgUrl}}' bindtap='goChangeInfo'></image>
+                <view bindtap='goChangeInfo'>
+                    <view class='text_ellipsis'>
+                        <text class='text_ellipsis'>{{name}}</text>
+                        <image wx:if="{{isVip == '1' && isSvip != '1'}}" class="vipImage" src="/images/home/my/goldvip.png"></image>
+                        <image wx:if="{{isSvip == '1'}}" class="vipImage" src="/images/home/my/blackvip.png"></image>
+                    </view>
+                </view>
+                <image class='goAuthentication' src='/images/home/my/goAuthentication.png' bindtap='goAuthentication'></image>
+            </view>
+        </view>
+        <mdWxAuth wx:if='{{isShowLogin && !isLogin}}'>
+            <view class='no_login'>
+                <image class='nologin-avatar' src='/images/home/my/default_header.png'></image>
+                <text class='nologin-title'>请点击登录</text>
+                <text class='nologin-desc'>立即前往登录，感受更多精彩</text>
+            </view>
+        </mdWxAuth>
+    </view>
+
+    <view class='content'>
+        <view class='table table_menu'>
+            <view class='table_tit'>我的内容</view>
+            <view class='table_box'>
+                <mdWxAuth bind:next='goStudyCenter' style='float:left;width:25%;'>
+                    <view class='table_item'>
+                        <image src='/images/home/my/study.png'></image>
+                        <text>学习中心</text>
+                    </view>
+                </mdWxAuth>
+            </view>
+        </view>
+
+        <view class='table'>
+            <view class='table_tit'>服务推荐</view>
+            <view class='service_box'>
+                <view class='service_item' bindtap='goXCX' data-type='meet'>
+                    <image src='/images/home/my/meeting.png'></image>
+                    <text class='service_item_tit'>澜渟会议吧</text>
+                    <text class='service_item_desc'>GMAA 盆底培训考证</text>
+                </view>
+                <view class='service_item service_item_kegel' bindtap='goXCX' data-type='train'>
+                    <image src='/images/home/my/kegel.png'></image>
+                    <text class='service_item_tit'>澜渟训练</text>
+                    <text class='service_item_desc'>凯格尔运动 腹式呼吸</text>
+                </view>
+                <view class='service_item service_item_mall' bindtap='goXCX' data-type='mall'>
+                    <image src='/images/home/my/mall.png'></image>
+                    <text class='service_item_tit'>澜渟优品</text>
+                    <text class='service_item_desc'>澜渟官方 自营商城</text>
+                </view>
+            </view>
+        </view>
+        <view class='list_box'>
+            <mdWxAuth bind:next='goFeedback'>
+                <view class='list_item'>
+                    <text>意见反馈</text>
+                    <image src='/images/home/my/next.png'></image>
+                </view>
+            </mdWxAuth>
+            <view class='list_item' bindtap='contactShop'>
+                <text>客服热线</text>
+                <text class='phone_tag'>(</text>
+                <text class='medo_color_primary'> 400-133-5668 </text>
+                <text class='phone_tag'>)</text>
+                <image src='/images/home/my/next.png'></image>
+            </view>
+            <mdWxAuth bind:next='goSetting'>
+                <view class='list_item'>
+                    <text>设置</text>
+                    <image src='/images/home/my/next.png'></image>
+                </view>
+            </mdWxAuth>
+        </view>
+    </view>
+</view>
+<mdDialog id='mdDialog'></mdDialog>
+<view class='page_bottom'></view>

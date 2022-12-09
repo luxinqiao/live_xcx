@@ -1,0 +1,178 @@
+<!--
+ * 文件描述：直播详情页
+ * 创建人：殷俊
+ * 创建时间：2019-08-02
+-->
+<wxs module='md_common' src='../../../../../utils/common.wxs'></wxs>
+<wxs module='md_dict' src='../../../../../utils/dict.wxs'></wxs>
+<view class='content' wx:if="{{!isLoading}}">
+    <view class='header'>
+        <view class="headerImgBox">
+            <view class="liveTypeBox">
+                <image src="/images/home/college/audio.png" wx:if='{{liveDataObj.is_broad==md_dict.liveType.AUDIO}}'></image>
+                <image src="/images/home/college/video.png" wx:if='{{liveDataObj.is_broad==md_dict.liveType.VIDEO}}'></image>
+                <view>
+                    <image src="/images/home/college/pre_tip.png" wx:if='{{liveDataObj.status==0}}'></image>
+                    <image src="/images/home/college/live_tip.gif" wx:if='{{liveDataObj.status==1}}'></image>
+                    <image src="/images/home/college/end_tip.png" wx:if='{{liveDataObj.status==2&&((liveDataObj.is_broad==md_dict.liveType.AUDIO)||(liveDataObj.is_broad==md_dict.liveType.VIDEO&&liveDataObj.push_status==md_dict.videoStatus.END))}}'></image>
+                    <image src="/images/home/college/live_back.png" wx:if='{{liveDataObj.is_broad==md_dict.liveType.VIDEO&&liveDataObj.push_status==md_dict.videoStatus.BACK}}'></image>
+                    <text wx:if='{{(liveDataObj.is_broad==md_dict.liveType.AUDIO)||(liveDataObj.is_broad==md_dict.liveType.VIDEO&&liveDataObj.push_status!=md_dict.videoStatus.BACK)}}'>{{md_dict.getLiveStatus_new(liveDataObj.status)}}</text>
+                    <text wx:if='{{liveDataObj.is_broad==md_dict.liveType.VIDEO&&liveDataObj.push_status==md_dict.videoStatus.BACK}}'>{{md_dict.getVideoStatus(liveDataObj.push_status)}}</text>
+                </view>
+            </view>
+            <view class="headerPopup" wx:if="{{isCountdown}}"></view>
+            <view class="popupContent" wx:if="{{isCountdown}}">
+                <view class="trailContent">
+                    <text class="trailContentOne">距开始还剩</text>
+                    <view class="timeNum">
+                        <text class="num">{{dateArr[0]}}</text>
+                        <text class="word">天</text>
+                        <text class="num">{{dateArr[1]}}</text>
+                        <text class="word">时</text>
+                        <text class="num">{{dateArr[2]}}</text>
+                        <text class="word">分</text>
+                        <text class="num">{{dateArr[3]}}</text>
+                        <text class="word">秒</text>
+                    </view>
+                </view>
+            </view>
+            <image class='headerImg' src="{{liveDataObj.cover + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+        </view>
+        <view class='headerContent'>
+            <view class="titleBox">
+                <!-- <text class='liveText'>直播</text> -->
+                <text class='liveTitle'>{{md_common.replaceLive(liveDataObj.name)}}</text>
+            </view>
+            <view class='liveDetail'>
+                <view class="{{isExpand ? 'liveDetailTitle' : 'md_titlename liveDetailTitle'}}">{{liveDataObj.short_name}}</view>
+                <view class="liveExpand" bindtap="expand">
+                    <image wx:if="{{isExceed}}" class="moreTextArrow {{isExpand ? 'collapseArrow': ''}}" src='/pages/pkgs/college/images/detail/list.png'></image>
+                </view>
+            </view>
+            <view class='liveTime'>
+                <view>
+                    <text class='livePeopleNum' wx:if="{{!isCountdown}}">{{md_common.propleFilter(liveDataObj.learn_num)}}人学习</text>
+                    <text class='livePeopleNum' wx:if="{{isCountdown}}">{{md_common.propleFilter(liveDataObj.sub)}}人预约</text>
+                </view>
+                <view class='liveTimeDetail'>开始时间:{{liveDataObj.start_at}}</view>
+            </view>
+        </view>
+    </view>
+    <view class='coup' wx:if="{{couponObj.length && liveDataObj.is_authed == 0 && liveDataObj.price != 0 && platform === 'Android'}}">
+        <mdWxAuth class='couponBtn' bind:next='seeCoupon' data-route="{{liveDataObj.btn.route}}">
+            <view class='coupon md_padding'>
+                <text>优惠券</text>
+                <view>
+                    <view wx:for='{{couponObj}}' wx:if='{{index<=1}}' wx:key="index">
+                        <text>{{md_common.priceTransition(item.amount)}}元优惠券</text>
+                        <image src='/pages/pkgs/college/images/detail/coupon.png'></image>
+                    </view>
+                </view>
+                <text>领券</text>
+                <image src='/pages/pkgs/college/images/detail/right.png'></image>
+            </view>
+        </mdWxAuth>
+    </view>
+    <view class='detail'>
+        <view class='detailContent'>
+            <view class='detailCaption'>详情</view>
+            <view class="courseFocus">重点</view>
+            <image wx:for='{{liveDataObj.detail}}' wx:key="idx" wx:for-index="idx" wx:for-item="detailImg" class='detailImg' src='{{detailImg}}' mode="widthFix"></image>
+            <text class="liveOldDetail" wx:if="{{!liveDataObj.detail.length && liveDataObj.old_detail}}">{{liveDataObj.old_detail}}</text>
+            <view class="contentBox">
+                <view class='detailTitle'>嘉宾</view>
+                <view class='courseTeacher' wx:for='{{liveDataObj.member}}' wx:key="idx" wx:for-index="idx" wx:for-item="member">
+                    <image src='{{member.avatar}}' mode="aspectFill"></image>
+                    <view class='teacherInfo'>
+                        <view class='teacherName'>
+                            <text>{{member.nickname}}</text>
+                            <view></view>
+                            <text wx:if="{{member.rule_type == '1'}}">主持人</text>
+                            <text wx:if="{{member.rule_type == '2'}}">嘉宾</text>
+                        </view>
+                        <view class='jobTitle md_titlename'>{{member.remark}}</view>
+                    </view>
+                </view>
+                <view class='detailTitle'>适用人群</view>
+                <view class='detailText'>{{liveDataObj.for_people}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="bottomReplace"></view>
+    <view class="fixBottom" wx:if="{{platform === 'Android' || !((liveDataObj.btn.route == '2' || liveDataObj.btn.route == '3') && liveDataObj.price != '0' && platform === 'Ios')}}" style="{{isIphoneX?'height:146rpx':''}}">
+        <mdWxAuth bind:next='goLiveCourse' data-route="{{liveDataObj.btn.route}}">
+            <view class='enterBtn'>
+                <view class="price" wx:if="{{(liveDataObj.btn.route == '2' || liveDataObj.btn.route == '3') && liveDataObj.price != '0'}}">
+                    <text>
+                        <text class="money">￥</text>
+                        <text class="big">{{md_common.priceTrasTwo(liveDataObj.price)}}</text>
+                    </text>
+                    <text class="delete" wx:if="{{liveDataObj.original_price > liveDataObj.price}}">
+                        ￥{{md_common.priceTrasTwo(liveDataObj.original_price)}}
+                    </text>
+                    <text class="textContent"> / </text>
+                </view>
+                <text class="textContent" >{{liveDataObj.btn.btn_name}}</text>
+                <image wx:if="{{liveDataObj.liveType == '2'}}" src="/pages/pkgs/college/images/liveDetail/encryption.png"></image>
+            </view>
+        </mdWxAuth>
+    </view>
+    <view class="fixBottom_ios" wx:if="{{(liveDataObj.btn.route == '2' || liveDataObj.btn.route == '3') && liveDataObj.price != '0' && platform === 'Ios'}}" style="{{isIphoneX?'height:146rpx':''}}">
+        <mdWxAuth bind:next='goContact'>
+            <view class='price_ios'>
+                <image src="/images/common/appleIcon.png"></image>
+                <text>请前往澜渟APP学习更多好课</text>
+            </view>
+        </mdWxAuth>
+    </view>
+    <view class='liveDetail_replace' id="liveDetail_replace">
+        {{liveDataObj.short_name}}
+    </view>
+</view>
+<mdPopup id="mdPopup" isRound="{{true}}">
+    <view class="mdPopupBox">
+        <scroll-view class='couponContent' scroll-y catchtap='openCoupon'>
+            <view class='list' wx:for='{{couponObj}}' wx:key="{{index}}" bindtap='getCoupon' data-code='{{item.code}}'>
+                <image src='/pages/pkgs/college/images/detail/current.png' wx:if='{{item.common_type==0}}'></image>
+                <image src='/pages/pkgs/college/images/detail/pri.png' wx:if='{{item.common_type==1}}'></image>
+                <text>{{md_common.priceTransition(item.amount)}}</text>
+                <view>{{item.name}}</view>
+                <view>{{item.begin_date}}-{{item.end_date}}</view>
+                <view wx:if='{{item.is_get==0}}'>领取</view>
+                <image src='/pages/pkgs/college/images/detail/has.png' class='has' wx:if='{{item.is_get==1}}'></image>
+                <view class='full' wx:if='{{item.type==1}}'>满{{md_common.priceTransition(item.full_value)}}使用</view>
+            </view>
+        </scroll-view>
+        <view class="replace"></view>
+        <view class='popupBtn'>
+            <text bindtap='closeCoupon'>确定</text>
+        </view>
+    </view>
+</mdPopup>
+<mdDialog id='mdDialog' bindtap="closeDialog">
+     <view class="dialog_ios" catchtap>
+        <view>下载澜渟APP</view>
+        <view>
+            <image src="/images/common/guide.gif"></image>
+        </view>
+        <button open-type='contact' send-message-title="盆底产康知识，尽在澜渟LIVE。" send-message-img="/images/home/college/logo.png" show-message-card="true" bindtap="closeDialog">马上下载</button>
+    </view>
+</mdDialog>
+<view class="password" wx:if="{{isShow}}" catchtouchmove="{{true}}">
+    <view class="customize" style="top: {{moveUp}}rpx">
+        <view class="customize-content">
+            <text>密码：</text>
+            <input password value="{{password}}" maxlength="6" bindfocus="focus" bindblur="blur" bindinput="passwordChange" adjust-position="{{false}}"></input>
+        </view>
+        <view class="customize-bottom">
+            <view bindtap="cancel">取消</view>
+            <view bindtap="confim">确认</view>
+        </view>
+    </view>
+</view>
+<view class="password" wx:if="{{isGoLive}}" catchtouchmove="{{true}}">
+    <view class="entering">
+        <image src="/images/common/loading_1.gif"></image>
+        <text>请稍候...</text>
+    </view>
+</view>

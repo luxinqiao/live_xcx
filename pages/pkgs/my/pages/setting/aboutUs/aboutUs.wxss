@@ -1,0 +1,42 @@
+.qrCode {
+    margin: 114rpx auto 110rpx auto;
+    text-align: center;
+}
+
+.qrCode>image {
+    width: 200rpx;
+    height: 200rpx;
+    margin: 0 auto 32rpx auto;
+}
+
+.qrCode>text:nth-child(2) {
+    margin-top: 32rpx;
+    font-size: 32rpx;
+}
+
+.contactWay {
+    position: absolute;
+    width: 100%;
+    padding: 0 32rpx;
+}
+
+.contactWay>.title {
+    font-size:32rpx;
+    font-weight: bold;
+}
+
+.contactWay>view {
+    margin-top: 32rpx;
+    display: flex;
+}
+
+.contactWay>view>image {
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.contactWay>view>text:nth-child(2) {
+    margin-left: 16rpx;
+    font-size: 28rpx;
+    color: rgba(153,153,153,1);
+}

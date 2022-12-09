@@ -1,0 +1,73 @@
+page {
+    background-color: #fafafa;
+}
+
+/** ******** 个性签名 ********* */
+.sign>textarea {
+    width: 100%;
+    height: 240rpx;
+    line-height: 60rpx;
+    margin: auto;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    border-top: 2rpx solid rgb(217, 217, 217);
+    background-color: white;
+}
+
+.sign>.number {
+    position: absolute;
+    top: 200rpx;
+    right: 32rpx;
+    font-size: 26rpx;
+    color: rgba(153,153,153,1);
+}
+
+.sign>view {
+    margin: 80rpx auto 0 auto;
+    width: 686rpx;
+    height: 100rpx;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(255,44,121,1);
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    line-height: 100rpx;
+}
+
+.sign .no, .remark .no {
+    background-color: rgb(200, 200, 200);
+}
+
+/** ******** 个人简介 ********* */
+.remark>textarea {
+    width: 100%;
+    height: 400rpx;
+    line-height: 60rpx;
+    margin: auto;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    border-top: 2rpx solid rgb(217, 217, 217);
+    background-color: white;
+}
+
+.remark>.number {
+    position: absolute;
+    top: 360rpx;
+    right: 32rpx;
+    font-size: 26rpx;
+    color: rgba(153,153,153,1);
+}
+
+.remark>view {
+    margin: 80rpx auto 0 auto;
+    width: 686rpx;
+    height: 100rpx;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(255,44,121,1);
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    line-height: 100rpx;
+}

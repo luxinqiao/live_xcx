@@ -1,0 +1,216 @@
+/**
+    获取箭头图片
+    @param {Boolean} isShow 是否显示
+    @return {String} 箭头图片
+*/
+var getArrow = function (isShow) {
+    if (isShow) {
+        return '../../../../images/live/arrow-top.png'
+    }
+    return '../../../../images/live/arrow-bottom.png'
+}
+
+/**
+    获取身份
+    @param {Object} ext 扩展数据
+    @return {String} 身份描述
+*/
+var getIdentity = function (ext) {
+    if (ext == undefined) {
+        return '普通用户'
+    }
+    if (ext.identity == '0') {
+        return '普通用户'
+    } else if (ext.identity == '1') {
+        return '主持人'
+    } else if (ext.identity == '2') {
+        return '嘉宾'
+    } else if (ext.identity == '3') {
+        return '管理员'
+    }
+    return '普通用户'
+}
+
+/**
+    获取身份样式
+    @param {Object} ext 扩展数据
+    @return {String} 身份描述
+*/
+var getIdentityClass = function (ext) {
+	if (ext == undefined) {
+		return 'user'
+	}
+	if (ext.identity == '1') {
+		return 'host'
+	} else if (ext.identity == '2') {
+		return 'honor'
+	} else if (ext.identity == '3') {
+		return 'admin'
+	}
+	return 'user'
+}
+
+/**
+    获取音频已播放宽度
+    @param {String} percent 百分比
+    @return {String} 已播放宽度
+*/
+var getHasPlaywidth = function (percent) {
+    return percent + '%'
+}
+
+/**
+    获取音频未播放宽度
+    @param {String} percent 百分比
+    @return {String} 未播放宽度
+*/
+var getUnPlaywidth = function (percent) {
+    return (100 - percent) + '%'
+}
+
+/**
+    获取音频组件宽度
+    @param {String} time 时长
+    @return {Number} 宽度
+*/
+var getAudiowidth = function (time) {
+    return 240 + time / 1000 / 60 * 180
+}
+
+/**
+    获取音频x坐标
+    @param {String} percent 已播放百分比
+    @param {String} time 时长
+    @param {Number} rpxRatio rpx与px比例
+    @return {Number} 音频x坐标
+*/
+var getAudioX = function (percent, time, rpxRatio) {
+    return percent / 100 * (getAudiowidth(time) - 118) / rpxRatio
+}
+
+/**
+    四舍五入
+    @param {Number} val 小数
+    @param {Number} num 小数位数
+    @return {Number} 四舍五入后的小数
+*/
+var getFixed = function (val, num) {
+    return val.toFixed(num)
+}
+
+/**
+    获取评论列表
+    @param {Array} msgArr 消息列表
+    @return {Array} 评论列表
+*/
+var getCommentList = function (msgArr) {
+    let arr = []
+    for (var i = 0; i < msgArr.length; i++) {
+        if (msgArr[i].type == 100) {
+            arr.push(msgArr[i])
+        }
+    }
+    return arr
+}
+
+/**
+    获取滚动区域高度
+    @param {Boolean} isBannerShow 是否显示banner
+    @param {Boolean} isMsgLoad 是否消息加载完毕
+    @param {String} status 直播状态（0-未开始,1-进行中,2-已结束）
+    @param {String} isPullHistory 是否拉历史消息
+    @return {String} 高度
+*/
+var getScrollHeight = function (isBannerShow, isMsgLoad, status, isPullHistory) {
+	var height = isBannerShow ? 580 : 152
+    if (isMsgLoad && (status == '0' || status == '1') && isPullHistory == '0') {
+        height += 100
+    }
+    return 'calc(100% - ' + height + 'rpx)'
+}
+
+/**
+    获取评论距底部距离
+    @param {String} status 直播状态（0-未开始,1-进行中,2-已结束）
+    @param {String} isPullHistory 是否拉历史消息
+    @param {boolean} isIphoneX 是否IphoneX
+    @return {String} 距底部距离
+*/
+var getCommentBottom = function (status, isPullHistory, isIphoneX) {
+    if (status == '2' || isPullHistory == '1') {
+        if (isIphoneX) {
+            return '96rpx'
+        }
+        return '32rpx'
+    }
+    if (isIphoneX) {
+        return '196rpx'
+    }
+    return '132rpx'
+}
+/**
+    获取评论列表距底部距离
+    @param {String} status 直播状态（0-未开始,1-进行中,2-已结束）
+    @param {String} isPullHistory 是否拉历史消息
+    @param {boolean} isIphoneX 是否IphoneX
+    @return {String} 距底部距离
+*/
+var getCommentListBottom = function (status, isPullHistory, isIphoneX) {
+    if (status == '2' || isPullHistory == '1') {
+        if (isIphoneX) {
+            return '156rpx'
+        }
+		return '92rpx'
+    }
+    if (isIphoneX) {
+        return '256rpx'
+    }
+	return '192rpx'
+}
+
+/**
+    获取评论列表前3条评论
+    @param {Array} commentArr 所有评论
+    @return {Array} 前三条评论
+*/
+var getThirdComments = function (commentArr) {
+    var arr = []
+    var count = commentArr.length < 3 ? commentArr.length : 3
+    for (var i = commentArr.length - count; i < commentArr.length; i++) {
+        arr.push(commentArr[i])
+    }
+    return arr
+}
+
+/**
+    获取禁言文案
+    @param {Boolean} isAllMute 是否全体禁言
+	@param {Boolean} isMute 是否禁言
+    @return {String} 禁言文案
+*/
+var getMuteText = function (isAllMute, isMute) {
+	if (isAllMute) {
+		return '全体禁言开启'
+	}
+	if (isMute) {
+		return '您已被管理员禁言'
+	}
+	return '我来说两句'
+}
+
+module.exports = {
+    getArrow: getArrow,
+    getIdentity: getIdentity,
+	getIdentityClass: getIdentityClass,
+    getAudiowidth: getAudiowidth,
+    getHasPlaywidth: getHasPlaywidth,
+    getUnPlaywidth: getUnPlaywidth,
+    getAudioX: getAudioX,
+    getFixed: getFixed,
+    getCommentList: getCommentList,
+    getScrollHeight: getScrollHeight,
+    getCommentBottom: getCommentBottom,
+    getCommentListBottom: getCommentListBottom,
+    getThirdComments: getThirdComments,
+	getMuteText: getMuteText
+}

@@ -1,0 +1,93 @@
+/**
+    获取箭头图片
+    @param {Boolean} isShow 是否显示
+    @return {String} 箭头图片
+*/
+var getArrow = function (isShow) {
+    if (isShow) {
+        return '../../../images/live/arrow-top.png'
+    }
+    return '../../../images/live/arrow-bottom.png'
+}
+
+/**
+    获取身份
+    @param {Object} ext 扩展数据
+    @return {String} 身份描述
+*/
+var getIdentity = function (ext) {
+    if (ext == undefined) {
+        return '普通用户'
+    }
+    if (ext.identity == '0') {
+        return '普通用户'
+    } else if (ext.identity == '1') {
+        return '主持人'
+    } else if (ext.identity == '2') {
+        return '嘉宾'
+    } else if (ext.identity == '3') {
+        return '管理员'
+    }
+    return '普通用户'
+}
+
+/**
+    获取身份样式
+    @param {Object} ext 扩展数据
+    @return {String} 身份描述
+*/
+var getIdentityClass = function (ext) {
+    if (ext == undefined) {
+        return 'user'
+    }
+    if (ext.identity == '1') {
+        return 'host'
+    } else if (ext.identity == '2') {
+        return 'honor'
+    } else if (ext.identity == '3') {
+        return 'admin'
+    }
+    return 'user'
+}
+
+/**
+    获取滚动区域高度
+    @param {Boolean} isMsgLoad 是否消息加载完毕
+    @param {String} status 直播状态（0-未开始,1-进行中,2-已结束）
+    @param {String} isPullHistory 是否拉历史消息
+    @return {String} 高度
+*/
+var getScrollHeight = function (isMsgLoad, status, isPullHistory, isIphoneX) {
+    var height = 540
+    if (isMsgLoad && (status == '0' || status == '1') && isPullHistory == '0') {
+        height += 100
+    }
+	if (isIphoneX) {
+		height += 64
+	}
+    return 'calc(100% - ' + height + 'rpx)'
+}
+
+/**
+    获取禁言文案
+    @param {Boolean} isAllMute 是否全体禁言
+	@param {Boolean} isMute 是否禁言
+    @return {String} 禁言文案
+*/
+var getMuteText = function (isAllMute, isMute) {
+	if (isAllMute) {
+		return '全体禁言开启'
+	}
+	if (isMute) {
+		return '您已被管理员禁言'
+	}
+	return '我来说两句'
+}
+
+module.exports = {
+    getArrow: getArrow,
+    getIdentity: getIdentity,
+    getIdentityClass: getIdentityClass,
+    getScrollHeight: getScrollHeight,
+	getMuteText: getMuteText
+}

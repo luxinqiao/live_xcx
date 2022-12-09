@@ -1,0 +1,102 @@
+page {
+    background-color: #f7f8f8;
+}
+.message_title{
+    margin-top: 28rpx;
+    width: 100%;
+}
+.message_title view{
+    width: 206rpx; height: 48rpx;
+    margin: 0 auto;
+    background-color:rgba(204,204,204,0.3);
+    border-radius: 24rpx;
+    text-align: center;
+}
+.message_title view text{
+    color: #999; font-size: 24rpx;
+    line-height: 48rpx; 
+}
+.message_title view text:nth-child(2){
+    margin-left: 4rpx;
+}
+.rv_padding {
+    padding: 0 30rpx;
+}
+
+.list {
+    margin-top: 28rpx;
+    padding: 0 24rpx 28rpx 24rpx;
+}
+
+.messageInfo{
+    padding: 28rpx 24rpx 28rpx 24rpx;
+    margin-top: 28rpx;
+    border-radius:8rpx;
+    background-color: #fff;
+}
+.messageInfo .messageName text{
+    font-size: 32rpx; font-weight: bold;
+    line-height: 38rpx;
+}
+.messageInfo .messageName view{
+    position: relative; top: -18rpx;
+    display: inline-block;
+    height: 12rpx; width: 12rpx;
+    margin-left: 6rpx;
+    border-radius: 50%;
+    background-color: #F25352;
+}
+.meetMessage{
+    position: relative;
+    margin-top: 20rpx;
+}
+.meetMessage view:nth-child(1){
+    font-size: 26rpx; color: #666;
+}
+.meetMessage view:nth-child(2){
+    font-size: 26rpx; color: #666;
+    margin-top: 16rpx;
+}
+.gomeetInfo{
+    height: 68rpx;
+    padding-left: 24rpx;
+    background-color: #fff;
+    border-top: 1rpx solid #f2f2f2;
+}
+.gomeetInfo text{
+    float: left;
+    line-height: 68rpx;
+    color: #999;
+    font-size: 24rpx;
+}
+.gomeetInfo view{
+    position: relative;
+    width: 62rpx; height: 68rpx;
+    float: right;
+}
+.gomeetInfo image{
+    display: block;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto;
+    width: 12rpx; height: 18rpx;
+}
+.otherMessage{
+    margin-top: 20rpx;
+}
+.otherMessage view{
+    margin-top: 20rpx;
+    font-size: 26rpx; line-height: 40rpx;
+    color: #666;
+}
+ 
+.nomore {
+    height: 30rpx;
+    line-height: 30rpx;
+    margin-top: 40rpx;
+    padding-bottom: 60rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #999;
+    box-sizing: content-box;
+}

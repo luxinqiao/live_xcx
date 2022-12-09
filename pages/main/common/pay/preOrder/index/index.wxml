@@ -1,0 +1,54 @@
+<!--
+ * 文件描述：下单
+ * 创建人：赵志银
+ * 创建时间：2019-08-08
+-->
+<wxs module='wxs'>
+    /**
+     * 价格分转元
+     * @param {String}price 分
+     * @return {String} origin 元
+     */
+    var priceTransition = function(price) {
+        var origin = (price / 100).toFixed(2)
+        return origin
+    }
+    //模块导出
+    module.exports = {
+        priceTransition: priceTransition
+    }
+</wxs>
+<wxs module='md_common' src='../../../../../../utils/common.wxs'></wxs>
+<view class='message md_padding'>提示：购买后不支持退款、转让、退换</view>
+<view class='info'>
+    <view class='md_margin_order'>
+        <image src="{{paramObj.cover}}" mode="aspectFill"></image>
+        <view>
+            <text class="{{(paramObj.type != '1' && paramObj.type != '5') ? (paramObj.type == '2' ? 'isSelect typeLess' : (paramObj.type == '3' ? 'isSelect typeSpe' : (paramObj.type == '11' ? 'isSelect typeLive' : ''))) : ''}}">{{tag}}</text>
+            <text>{{paramObj.name}}</text>
+        </view>
+
+        <text class='size' wx:if="{{paramObj.type == 5}}">{{paramObj.size}}</text>
+
+        <view>
+            <text>￥</text>
+            <text>{{wxs.priceTransition(paramObj.price)}}</text>
+        </view>
+    </view>
+    <view class='coupon md_margin' bindtap='seeCoupon' >
+        <text>优惠券</text>
+        <text wx:if='{{checkCouponPrice<=0&&couponDataObj.length>0}}'>请选择优惠券</text>
+        <text wx:if='{{checkCouponPrice>0}}' class='act'>优惠{{md_common.priceTransition(checkCouponPrice)}}元</text>
+        <text wx:if='{{couponDataObj.length<=0}}'>暂无可用优惠券</text>
+        <image src='/images/main/pay/preOrder/right.png'></image>
+    </view>
+</view>
+<view class='btn'>
+    <view>
+        <text>实付款：</text>
+        <text>￥</text>
+        <text>{{wxs.priceTransition(realPrice)}}</text>
+    </view>
+    <view data-code='{{paramObj.code}}' data-price='{{paramObj.price}}' bindtap='goPay'>提交订单</view>
+</view>
+<mdDialog id='mdDialog'></mdDialog>

@@ -1,0 +1,64 @@
+page {
+    border-top: 1px solid #EFEFEF;
+}
+.content {
+    height: 100%;
+    padding-bottom: 154rpx;
+}
+.list {
+    position: relative;
+    padding-left: 32rpx;
+    min-height: 182rpx; width: 100%;
+}
+.list>image:nth-child(1) {
+    position: absolute;
+    left: 32rpx; top: 42rpx;
+    width: 50rpx; height: 38rpx;
+}
+.list>view {
+    margin-left: 90rpx;
+    padding: 32rpx 0 30rpx 0;
+    width: 628rpx; min-height: 182rpx;
+    border-bottom: 1px solid #EFEFEF;
+}
+.list>view>.text_ellipsis_coupon {
+    width: 520rpx; min-height: 40rpx; max-height: 80rpx
+}
+.list>view>.text_ellipsis_coupon text{
+    word-wrap: break-word;
+    display: block; width: 520rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+}
+.list>view>text:nth-child(2) {
+    margin-top: 8rpx;
+    height: 38rpx;
+    line-height: 38rpx;
+    font-size: 28rpx; font-weight: bold;
+}
+.list>view>view:last-child {
+    margin-top: 8rpx; 
+    font-size: 20rpx; color: #999;
+} 
+.list>image:nth-child(3) {
+    position: absolute;
+    right: 32rpx; top: 34rpx;
+    width: 46rpx; height: 46rpx;
+}
+.btn {
+    position: fixed;
+    width: 100%; height: 154rpx;
+    bottom: 0; left: 0;
+    border: 1px solid #f6f6f6;
+    box-shadow: #f2f2f2 0 0 20px;
+}
+.btn>text {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    width: 686rpx; height: 98rpx;
+    line-height: 98rpx; text-align: center;
+    font-size: 32rpx; color: #fff;
+    background-color: #FF2C79;
+    border-radius: 50rpx;
+}

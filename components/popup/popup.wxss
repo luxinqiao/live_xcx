@@ -1,0 +1,44 @@
+.popupBox{
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 999;
+}
+.popupView{
+    position: absolute;
+    background-color: #fff;
+}
+.bottom{
+    bottom: -100%; left: 0;
+    width: 100%
+}
+.top{
+    top: -100%; left: 0;
+    width: 100%
+}
+.left{
+    left: -100%; top: 0;
+    height: 100%
+}
+.right{
+    right: -100%; top: 0;
+    height: 100%
+}
+.bottomRound{
+    overflow: hidden;
+    border-top-left-radius: 40rpx;
+    border-top-right-radius: 40rpx;
+}
+.topRound{
+    overflow: hidden;
+    border-bottom-left-radius: 40rpx;
+    border-bottom-right-radius: 40rpx;
+}
+.leftRound{
+    overflow: hidden;
+    border-bottom-right-radius: 40rpx;
+    border-top-right-radius: 40rpx;
+}
+.rightRound{
+    border-bottom-left-radius: 40rpx;
+    border-top-left-radius: 40rpx;
+}

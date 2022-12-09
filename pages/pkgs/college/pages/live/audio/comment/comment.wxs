@@ -1,0 +1,33 @@
+/**
+    获取滚动条样式
+    @param {String} status 直播状态（0-未开始,1-进行中,2-已结束）
+    @param {String} isPullHistory 是否拉历史消息
+    @return {String} 滚动条样式
+*/
+var getScrollStyle = function (status, isPullHistory) {
+    if (status == '2' || isPullHistory == '1') {
+        return 'padding-bottom: 12rpx'
+    }
+    return 'height: calc(100% - 132rpx)'
+}
+
+/**
+    获取禁言文案
+    @param {Boolean} isAllMute 是否全体禁言
+	@param {Boolean} isMute 是否禁言
+    @return {String} 禁言文案
+*/
+var getMuteText = function (isAllMute, isMute) {
+	if (isAllMute) {
+		return '全体禁言开启'
+	}
+	if (isMute) {
+		return '您已被管理员禁言'
+	}
+	return '我来说两句'
+}
+
+module.exports = {
+    getScrollStyle: getScrollStyle,
+	getMuteText: getMuteText
+}

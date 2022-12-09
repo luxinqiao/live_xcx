@@ -1,0 +1,10 @@
+<!--
+ * 文件描述：弹出层组件
+ * 创建人：段素栋
+ * 创建时间：2019-08-19
+-->
+<view class="popupBox" hidden="{{!isShow}}" style="background-color: {{isOverlay ? 'rgba(0, 0, 0, 0.3)' : ''}}; height: {{systemInfoObj.windowHeight}}px; width: {{systemInfoObj.windowWidth}}px" catchtap="clickBox" catchtouchmove="{{islock_scroll}}">
+    <view animation="{{animation}}" style="{{position}}: {{positionValue}}px;" class="popupView {{position}} {{isRound ? position : ''}}Round" id="mdPopup" catchtap="clickSlot">
+        <slot></slot>
+    </view>
+</view>

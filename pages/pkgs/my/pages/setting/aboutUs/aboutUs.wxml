@@ -1,0 +1,22 @@
+<!--
+ * 文件描述：关于我们
+ * 创建人：殷俊
+ * 创建时间：2019-08-14
+-->
+<view class='qrCode'>
+    <image src='/pages/pkgs/my/images/setting/ltjk.png'></image>
+    <text>澜渟微信公众号</text>
+</view>
+<view class='contactWay'>
+    <text class='title'>联系方式</text>
+    <view bindtap='contactShop'>
+        <image src='/pages/pkgs/my/images/setting/phone.png'></image>
+        <text>联系电话：</text>
+        <text>400-133-5668</text>
+    </view>
+    <view>
+        <image src='/pages/pkgs/my/images/setting/mail.png'></image>
+        <text>联系邮箱：</text>
+        <text>support@medohealth.com</text>
+    </view>
+</view>

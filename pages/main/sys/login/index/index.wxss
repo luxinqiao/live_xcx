@@ -1,0 +1,65 @@
+#main {
+    padding-top: 82rpx;
+}
+
+#title {
+    position: relative;
+    height: 74rpx;
+}
+#title>image {
+    position: absolute;
+    width: 52rpx; height: 72rpx;
+    top: 6rpx; left: 28rpx;
+}
+#title>text {
+    position: absolute;
+    top: 0; left: 100rpx;
+    height: 74rpx;
+    line-height: 74rpx;
+    color: #333;
+    font-size: 52rpx; font-weight: bold;
+    letter-spacing: 2rpx;
+}
+
+#wechatLogin {
+    position: absolute;
+    top: 430rpx; left: 0; right: 0;
+    margin: auto;
+    width: 692rpx; height: 94rpx;
+    text-align: center; line-height: 94rpx;
+    border-radius: 47rpx;
+    background-color: #ff2c79; color: #fff;
+    font-size: 34rpx;
+}
+#phoneLogin {
+    position: absolute;
+    top: 572rpx; left: 0; right: 0;
+    margin: auto;
+    width: 692rpx; height: 94rpx;
+    text-align: center; line-height: 94rpx;
+    border-radius: 47rpx; border: 2rpx solid #ff2c79;
+    background-color: #fff; color: #ff2c79;
+    font-size: 34rpx;
+}
+
+#tip {
+    position: absolute;
+    bottom: 90rpx; left: 0; right: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 24rpx;
+    color: #999;
+}
+#tip>text {
+    font-size: 24rpx;
+    color: #7694cf;
+}
+
+#version {
+    position: absolute;
+    bottom: 28rpx; left: 0; right: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 22rpx;
+    color: #999;
+}

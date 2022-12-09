@@ -1,0 +1,29 @@
+<!--
+    文件描述：评论列表
+    创建人：卢信桥
+    创建时间：2019-07-24
+-->
+<wxs module='commentWxs' src='comment.wxs'></wxs>
+<wxs module='commonWxs' src='../../../../../../../utils/common.wxs'></wxs>
+<wxs module='dictWxs' src='../../../../../../../utils/dict.wxs'></wxs>
+
+<scroll-view id='commentList' scroll-y style='{{commentWxs.getScrollStyle(paramObj.status, paramObj.isPullHistory)}}' lower-threshold='50' bindscrolltolower='scrolltolower'>
+    <view class='commentItem' wx:for='{{dataArr}}' wx:key='{{index}}' wx:if='{{item.ext.type!=dictWxs.customExtType.GIFT}}'>
+        <image class='avatar' src='{{commonWxs.convertAvatar(item.user_avatar)}}'></image>
+        <view class='name'>{{item.user_name}}</view>
+        <view class='time'>{{item.create_at}}</view>
+        <view class='content'>{{item.content.text}}</view>
+        <image class='menu' wx:if='{{item.fromAccount==wyimAccid}}' src='../../../../images/live/delete.png' data-item='{{item}}' bindtap='deleteMsg'></image>
+    </view>
+    <view class='nomore' wx:if='{{isLast}}'>-没有更多内容-</view>
+</scroll-view>
+
+<view id='sendComment' wx:if='{{paramObj.status!=dictWxs.roomStatus.END && paramObj.isPullHistory=="0" && platform!="windows"}}'>
+	<mdInput inputType='textarea' isDisabled='{{isAllMute||isMute}}' bind:send='sendComment' length='1000' btnText='发送' placeholderText='{{commentWxs.getMuteText(isAllMute, isMute)}}' isEmoji='{{false}}'></mdInput>
+</view>
+
+<view id='noData' wx:if='{{isShowData && dataArr.length == 0}}'>
+    <image src='../../../../images/live/no-comment.png'></image>
+    <text>您还没有评论哦</text>
+</view>
+<mdDialog id='mdDialog'></mdDialog>

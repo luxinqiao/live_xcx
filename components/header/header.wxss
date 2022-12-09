@@ -1,0 +1,36 @@
+.header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 100;
+}
+.white_header {
+    background-color: #fff;
+}
+.transparent_header {
+    background-color: transparent;
+}
+.title {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+.back {
+    position: absolute;
+    top: 0; bottom: 0; left: 12rpx;
+    margin: auto; padding: 20rpx;
+    width: 18rpx; height: 30rpx;
+    box-sizing: content-box;
+}
+.content {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    height: 100%;
+    text-align: center;
+}
+.normal {
+    overflow: hidden;text-overflow:ellipsis;white-space: nowrap;
+    max-width: 40%;
+    font-size: 34rpx;
+}

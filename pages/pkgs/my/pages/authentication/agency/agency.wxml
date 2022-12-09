@@ -1,0 +1,68 @@
+<!--
+ * 文件描述：机构认证
+ * 创建人：殷俊
+ * 创建时间：2019-08-27
+-->
+<view class='content'>
+    <view wx:if='{{isShowFail}}' class='header'>
+        <view>提示：{{uiRemark}}</view>
+    </view>
+    <view class='inputBox'>
+        <view class='agency' bindtap="showPopup">
+            <text>机构类型</text>
+            <input disabled="disabled" type='text' value='{{selAgencyObj.name}}' placeholder='请选择机构' bindinput='inputAgency'></input>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+        <!-- 非医疗 -->
+        <view wx:if="{{selAgencyObj.val == '1'}}">
+            <view class='agencyName'>
+                <text>机构名称</text>
+                <input type='text' value='{{agencyName}}' placeholder='请填写机构名称' bindinput='inputAgencyName'></input>
+            </view>
+            <view class='duty'>
+                <text>职务</text>
+                <input type='text' value='{{duty}}' placeholder='请填写职务' bindinput='inputDuty'></input>
+            </view>
+        </view>
+        <!-- 医疗 -->
+        <view wx:else>
+            <view class='hospital' bindtap="goSearchHos">
+                <text>医院</text>
+                <input disabled="disabled" disabled="disabled" readonly="readonly" type='text' value='{{hospital}}' placeholder='请选择医院' bindinput='inputHospital'></input>
+                <image src='/pages/pkgs/my/images/common/next.png'></image>
+            </view>
+            <view class='department' bindtap="goSearchDep">
+                <text>科室</text>
+                <input disabled="disabled" type='text' value='{{department}}' placeholder='请选择科室' bindinput='inputDepartment'></input>
+                <image src='/pages/pkgs/my/images/common/next.png'></image>
+            </view>
+            <view class='position' bindtap="goSearchPos">
+                <text>职称</text>
+                <input disabled="disabled" type='text' value='{{position}}' placeholder='请选择职称' bindinput='inputPosition'></input>
+                <image src='/pages/pkgs/my/images/common/next.png'></image>
+            </view>
+        </view>
+        
+    </view>
+    <view class='division'></view>
+    <view class='upload'>
+        <view class='uploadTitle'>请上传认证资料信息</view>
+        <view class='uploadSubTitle'>
+            <text>*</text>
+            <text>上传资料仅用于认证，他人及第三方不可见</text>
+        </view>
+        <view class='uploadImg'>
+            <image bindtap='uploadFront' src='{{agencyImg}}'></image>
+        </view>
+    </view>
+    <button class='submitBtn' bindtap='submit'>{{btnText}}</button>
+
+    <mdPopup class="selAgencyType">
+        <view class='medical' bindtap='selMedical'>医疗机构</view>
+        <view class='noMedical' bindtap='selnoMedical'>非医疗机构</view>
+        <view class='partion'></view>
+        <view class='cancel' bindtap='selCancel'>取消</view>
+    </mdPopup>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

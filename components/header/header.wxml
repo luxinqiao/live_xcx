@@ -1,0 +1,15 @@
+<!--
+ * 文件描述：公共头部组件
+ * 创建人：赵志银
+ * 创建时间：2020-07-10
+-->
+<view class='header_class header  {{mode=="white"?"white_header":"transparent_header"}}' style='height: {{statusBarHeight+titleHeight}}px;{{isHasBorder?"border-bottom: 1rpx solid #F4F4F4":""}}'>
+    <view class='top' style='height:{{statusBarHeight}}px;'></view>
+    <view class='title' style='top:{{menuButton.top}}px;height:{{menuButton.height}}px;'>
+        <view wx:if='{{!isCustom}}' class='content normal title_class' style='line-height:{{menuButton.height}}px'>{{title}}</view>
+        <view wx:if='{{isCustom}}' class='content' style='line-height:{{menuButton.height}}px'>
+            <slot></slot>
+        </view>
+        <image src='{{leftImgSrc}}' class='back left_img_class' wx:if='{{isLeftShow}}' bindtap='goBack'></image>
+    </view>
+</view>

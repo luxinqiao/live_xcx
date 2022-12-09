@@ -1,0 +1,18 @@
+<!--
+ * 文件描述：搜索医院
+ * 创建人：殷俊
+ * 创建时间：2019-08-28
+-->
+<view class='content'>
+    <view class='searchBox'>
+        <view class='searchView'>
+            <image src='/pages/pkgs/my/images/authentication/search.png'></image>
+            <input placeholder='请输入医院关键词' value='{{searchText}}' bindinput='inputHos'></input>
+        </view>
+        <view class='confirm' bindtap='confirmRes'>确定</view>
+    </view>
+    <view class='searchResult' data-res='{{searchRes.name}}' bindtap='clickResHos' wx:for='{{searchResArr}}' wx:for-index="idx" wx:for-item="searchRes">
+        <text>{{searchRes.name}}</text>
+    </view>
+</view>
+<mdDialog id='mdDialog'></mdDialog>

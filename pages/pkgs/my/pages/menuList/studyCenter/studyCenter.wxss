@@ -1,0 +1,307 @@
+.content {
+    padding-bottom: 40rpx;
+}
+
+/** ************** 页头 *************** */
+.contentTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 4rpx;
+    border-bottom: 1px solid rgba(239,239,239,1);
+    height: 100rpx;
+    background-color: white;
+}
+
+.contentTitle>view {
+    position: relative;
+    width: 50%;
+    height: 100rpx;
+    font-size: 30rpx;
+    line-height: 100rpx;
+}
+
+.contentTitle .act {
+    position: absolute;
+    bottom: 10rpx; left: 0; right: 0;
+    margin: auto;
+    width: 28rpx; height: 4rpx;
+    border-radius: 2rpx;
+    background:rgba(51,51,51,1);
+}
+
+.contentTitle .colorSelected {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333333;
+}
+
+.contentTitle .colorUnselected {
+    font-size: 28rpx;
+    font-weight: bold;
+    color: #888888;
+}
+
+/** ********************* 学习历史列表 **************** */
+.study {
+    background-color: white;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.study .studyContent {
+    display: flex;
+    padding: 24rpx 24rpx;
+    height: 100%;
+}
+.study .studyContent .studyImgBox{
+    position: relative;
+}
+.study .studyContent .liveTypeBox{
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: center;
+    position: absolute;
+    right: 0; bottom: 0;
+    width: 118rpx; height: 30rpx;
+    border-top-left-radius: 30rpx;
+    border-bottom-left-radius: 30rpx;
+}
+.study .studyContent .liveTypeBox>view:nth-child(1) {
+    display: flex; flex-direction: row; align-items: center; 
+    width: 46rpx; height: 30rpx;
+    padding-left: 14rpx;
+    border-top-left-radius: 30rpx;
+    border-bottom-left-radius: 30rpx;
+    background-color: #ff2c79;
+}
+.study .studyContent .liveTypeBox>image:nth-child(1) {
+    width: 46rpx; height: 30rpx;
+}
+.study .studyContent .liveTypeBox view:nth-child(2){
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    width: 72rpx; height: 30rpx; line-height: 30rpx;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-bottom-right-radius: 8rpx;
+}
+.study .studyContent .liveTypeBox>view image{
+    width: 22rpx; height: 22rpx;
+    margin-right: 6rpx;
+}
+.study .studyContent .liveTypeBox text{
+    display: inline-block;
+    height: 18rpx; line-height: 18rpx;
+    font-size: 18rpx; color: #fff;
+}
+.study .startStatus {
+    position: absolute;
+    background:rgba(0,0,0,0.4);
+    line-height: 26rpx;
+    padding: 2rpx 12rpx;
+    text-align: center;
+    border-radius:8px 0px 8px 0px;
+    font-size: 20rpx;
+    color: white;
+}
+
+.study .studyImg {
+    width: 168rpx;
+    height: 200rpx;
+    border-radius: 8rpx;
+}
+
+.study .studyText {
+    position: relative;
+    margin-left: 24rpx;
+    width: 510rpx;
+}
+
+.study .studyTextTop {
+    position: relative; top: -10rpx;
+    color:#333333;
+    font-size: 30rpx;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+}
+
+.study .studyTextTop>text {
+    margin-right: 8rpx;
+    font-size: 20rpx;
+    height: 30rpx;
+    line-height: 26rpx;
+    padding: 0 8rpx;
+    text-align: center;
+    border-radius: 8rpx;
+}
+
+.study .studyAndLearn {
+    position: absolute;
+    bottom: 16rpx; left: 0;
+    display: flex; width: 100%;
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.study .studyTextBottom>text {
+    color:rgba(153,153,153,1);
+    font-size: 26rpx;
+}
+
+.study .studyTextBottom .roteCode {
+    color:#ff508f;
+}
+
+.study .studyTextBottomS>text {
+    color:rgba(153,153,153,1);
+    font-size: 26rpx;
+}
+
+.study .studyTextBottomS>text:nth-child(2) {
+    color:#ff508f;
+}
+
+.study .studyTextBottomS .roteCode {
+    color:#ff508f;
+}
+
+.study .learnNum {
+    font-size: 26rpx;
+    color: rgba(153,153,153,1);
+}
+
+/** ********************* 已购课程 **************** */
+.course {
+    background-color: white;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.course .courseContent {
+    display: flex;
+    padding: 40rpx 32rpx;
+    height: 100%;
+}
+
+.course .startStatus {
+    position: absolute;
+    background:rgba(0,0,0,0.4);
+    line-height: 26rpx;
+    padding: 2rpx 12rpx;
+    text-align: center;
+    border-radius:8px 0px 8px 0px;
+    font-size: 20rpx;
+    color: white;
+}
+
+.course .liveStatus {
+    position: absolute;
+    background:rgba(237,101,145,0.6);
+    line-height: 26rpx;
+    padding: 2rpx 12rpx;
+    text-align: center;
+    border-radius:8px 0px 8px 0px;
+    font-size: 20rpx;
+    color: white;
+}
+
+.course .overStatus {
+    position: absolute;
+    background:rgba(0,0,0,0.4);
+    line-height: 26rpx;
+    padding: 2rpx 12rpx;
+    text-align: center;
+    border-radius:8px 0px 8px 0px;
+    font-size: 20rpx;
+    color: white;
+}
+
+.course .courseImg {
+    width: 216rpx;
+    height: 162rpx;
+    border-radius: 8rpx;
+}
+
+.course .courseText {
+    margin-left: 16rpx;
+    width: 448rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+.course .courseTextTop {
+    color:#333333;
+    font-size: 32rpx;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient: vertical;
+}
+
+.course .courseTextTop>text:nth-child(1) {
+    position: relative; top: -6rpx;
+    margin-right: 8rpx;
+    color: #EF5E8F;
+    font-size: 20rpx;
+    border: 1px solid #EF5E8F;
+    height: 30rpx;
+    line-height: 26rpx;
+    padding: 0 8rpx;
+    text-align: center;
+    border-radius: 8rpx;
+}
+
+.course .courseTextTop>text:nth-child(2) {
+    margin-left: 8rpx;
+    color:#333333;
+    font-size: 32rpx;
+}
+
+.courseTextBottom {
+    position: absolute;
+    bottom: 2rpx;
+    display: flex; flex-direction: column;
+    justify-content:space-between;
+    width: 494rpx; height: 98rpx;
+}
+
+.courseTextBottom>.courseType>text {
+    margin-right: 16rpx;
+    color:rgba(102,102,102,1);
+    font-size: 22rpx;
+    background:rgba(246,246,246,1);
+    height: 36rpx;
+    line-height: 26rpx;
+    padding: 0 8rpx;
+    text-align: center;
+    border-radius: 4rpx;
+}
+
+.courseTextBottom>.courseStudyNum {
+    color:rgba(153,153,153,1);
+    font-size: 26rpx;
+}
+
+/** ********************* 缺省页 **************** */
+.default{
+    margin: 242rpx auto 0 auto;
+    width: 300rpx;
+    text-align: center;
+}
+
+.default>image{
+    width: 298rpx;
+    height: 218rpx;
+    margin: 0 auto 32rpx auto;
+}
+
+.default>text{
+    font-size: 28rpx;
+    color:rgba(102,102,102,1);
+}

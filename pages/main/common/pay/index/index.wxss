@@ -1,0 +1,127 @@
+page {
+    background-color: #FAFAFA;
+}
+.title {
+    padding: 24rpx 32rpx;
+    line-height: 36rpx;
+    font-size: 26rpx; color: #F86E21;
+    box-sizing: content-box;
+    background-color: #FEFCEC;
+}
+.top {
+    position: relative;
+    height: 188rpx; width: 100%;
+    background-color: #fff;
+}
+.top>view {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    margin: auto;
+    height: 94rpx; width: 100%;
+    text-align: center;
+}
+.top>view>text:nth-child(1) {
+    line-height: 94rpx;
+    font-size: 50rpx; color: #EF5E8F;
+}
+.top>view>text:nth-child(2) {
+    line-height: 94rpx; 
+    font-size: 80rpx; font-weight: bold; color: #EF5E8F;
+}
+.moneycontent {
+    height: 120rpx;
+    background-color: #fff;
+}
+.money {
+    position: relative;
+    height: 120rpx; width: 682rpx;
+    border-top: 1px solid #EFEFEF;
+    background-color: #fff;
+}
+.money>image:nth-child(1) {
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    margin: auto;
+    height: 76rpx; width: 76rpx;
+}
+.money>text:nth-child(2) {
+    position: absolute;
+    top: 16rpx; left: 116rpx;
+    height: 44rpx; line-height: 44rpx;
+    font-size: 32rpx; 
+}
+.money>text:nth-child(3) {
+    position: absolute;
+    top: 68rpx; left: 116rpx;
+    font-size: 26rpx; color: #999;
+}
+.money>image:nth-child(4) {
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    margin: auto;
+    height: 44rpx; width: 84rpx;
+}
+view:nth-child(4) {
+    padding-left: 32rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 26rpx; color: #999;
+}
+.payStyle {
+  position: relative;
+  height: 120rpx; line-height: 120rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #f7f8f8;
+}
+.payStyle>image:nth-child(1) {
+  position: absolute;
+  top: 0; bottom: 0; left: 32rpx;
+  margin: auto;
+  width: 76rpx; height: 76rpx;
+}
+.payStyle>text:nth-child(2) {
+  position: absolute;
+  top: 0; bottom: 0; left: 148rpx;
+  margin: auto;
+  height: 32rpx; line-height: 32rpx;
+  font-size: 32rpx; 
+}
+.payStyle>image:nth-child(3) {
+  position: absolute;
+  top: 0; bottom: 0; right: 32rpx;
+  margin: auto;
+  width: 46rpx; height: 46rpx;
+}
+view:nth-child(5) {
+    padding: 54rpx 54rpx 0 54rpx;
+    line-height: 34rpx;
+    font-size: 22rpx; color: #999999;
+}
+.btn {
+    position: fixed;
+    bottom: 0; left: 0;
+    height: 160rpx; width: 100%;
+    line-height: 160rpx;
+    background-color: #fff;
+}
+.btn>text {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    width: 686rpx; height: 98rpx;
+    line-height: 98rpx; text-align: center;
+    font-size: 32rpx; color: #fff;
+    border-radius: 50rpx;
+    background-color: #FF2C79;
+}
+.btn>text.no {
+  background-color: #999999;
+}
+.payWay{
+    padding-left: 32rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 26rpx;
+    color: #999;
+
+}

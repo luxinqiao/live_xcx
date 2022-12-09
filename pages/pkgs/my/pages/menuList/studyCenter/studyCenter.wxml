@@ -1,0 +1,153 @@
+<!--
+ * 文件描述：学习中心
+ * 创建人：殷俊
+ * 创建时间：2019-08-08
+-->
+<wxs module='md_common' src='../../../../../../utils/common.wxs'></wxs>
+<wxs module='md_dict' src='../../../../../../utils/dict.wxs'></wxs>
+<wxs module="foo">
+    /**
+     * 将日期中的“-”转换为“.”
+     * @param {String} rote_code 第几节课
+     * @return {Number} number类型第几节课
+     */
+    var transInt = function(rote_code) {
+        return parseInt(rote_code);
+    }
+
+    module.exports = {
+        transInt: transInt
+    }
+</wxs>
+
+<view class='content'>
+    <view class="contentTitle">
+        <view bindtap="selectMode" data-ref="studyHistory">
+            <text class="{{modeName === 'studyHistory' ? 'colorSelected' : 'colorUnselected'}}">学习历史</text>
+            <view wx:if="{{modeName === 'studyHistory'}}" class='act'></view>
+        </view>
+        <view bindtap="selectMode" data-ref="boughtCourse">
+            <text class="{{modeName === 'boughtCourse' ? 'colorSelected' : 'colorUnselected'}}">已购记录</text>
+            <view wx:if="{{modeName === 'boughtCourse'}}" class='act'></view>
+        </view>
+    </view>
+    <!-- 学习历史 -->
+    <view wx:if="{{tabShowFlag=='0'}}" wx:for='{{historyArr}}' wx:for-index="idx" wx:for-item="history" class="study" data-code='{{history.source_code}}' data-type='{{history.source_type}}' bindtap='goHistoryDetail'>
+        <view class="studyContent">
+            <view class="studyImgBox">
+                <image class='studyImg' src="{{history.cover + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+                <view wx:if='{{history.source_type == 2}}' class="liveTypeBox">
+                    <image src="/images/home/college/audios.png" wx:if='{{history.is_broad==md_dict.liveType.AUDIO}}'></image>
+                    <image src="/images/home/college/videos.png" wx:if='{{history.is_broad==md_dict.liveType.VIDEO}}'></image>
+                    <view wx:if='{{history.liveStatus == 0}}'>
+                        <image src="/images/home/college/pre_tip.png" class="live_tip"></image>
+                        <text class="liveStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.NOSTART)}}</text>
+                    </view>
+                    <view wx:elif='{{history.liveStatus == 1}}'>
+                        <image src="/images/home/college/live_tip.gif" class="live_tip"></image>
+                        <text class="liveStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.INPROGRESS)}}</text>
+                    </view>
+                    <view wx:elif='{{history.liveStatus == 2&&(history.is_broad==md_dict.liveType.AUDIO||(history.is_broad==md_dict.liveType.VIDEO&&history.push_status==md_dict.videoStatus.END))}}'>
+                        <image src="/images/home/college/end_tip.png" class="live_tip"></image>
+                        <text class="overStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.END)}}</text>
+                    </view>
+                    <view wx:elif='{{history.is_broad==md_dict.liveType.VIDEO&&history.push_status==md_dict.videoStatus.BACK}}'>
+                        <image src="/images/home/college/live_back.png" class="live_tip"></image>
+                        <text class="overStatus">{{md_dict.getVideoStatus(history.push_status)}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class='studyText'>
+                <view class='studyTextTop'>
+                    <text class="typeLess" wx:if='{{history.source_type == 0 && false}}'>课程</text>
+                    <text class="typeSpe" wx:elif='{{history.source_type == 1 && false}}'>专栏</text>
+                    <text class="typeLive" wx:elif='{{history.source_type == 2 && false}}'>直播</text> 
+                    {{md_common.replaceLive(history.name)}}
+                </view>
+                <view class='studyAndLearn'>
+                    <view wx:if='{{history.source_type == 0}}' class='studyTextBottom'>
+                        <text>观看至 </text>
+                        <text wx:if='{{history.chap_count > 1}}'>第<text class='roteCode'>{{foo.transInt(history.rote_code)+1}}</text>节</text>
+                        <text> {{md_common.secondToTime(history.rote_time)}}</text>
+                    </view>
+                    <view wx:if='{{history.source_type == 1}}' class='studyTextBottomS'>
+                        <text>观看至 第</text>
+                        <text>{{foo.transInt(history.rote_code)+1}}</text>
+                        <text>节课 {{md_common.secondToTime(history.rote_time)}}</text>
+                    </view>
+                    <view>
+                        <text wx:if='{{(history.source_type == 2) && (history.liveStatus == 0)}}' class='learnNum'>{{md_common.isEmpty(history.learn_num)? 0 : md_common.propleFilter(history.liveSub)}}人预约</text>
+                        <text wx:else class='learnNum'>{{md_common.isEmpty(history.learn_num)? 0 : md_common.propleFilter(history.learn_num)}}人学习</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="pageLoading" wx:if="{{!isHisLast && (tabShowFlag == '0') && (historyArr.length != 0)}}">
+        <text>●</text>
+        <text>●</text>
+        <text>●</text>
+    </view>
+    <view class='nomore' wx:if="{{isHisLast && (tabShowFlag == '0') && (historyArr.length != 0)}}">-没有更多内容-</view>
+    <!-- 已购记录 -->
+    <view wx:if="{{tabShowFlag=='1'}}" wx:for='{{courseArr}}' wx:for-index="idx" wx:for-item="course" class="study" data-code='{{course.product_code}}' data-type='{{course.type}}' bindtap='goCourseDetail'>
+        <view class="studyContent">
+        <view class="studyImgBox">
+                <image class='studyImg' src="{{course.product_image + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+                <view wx:if='{{course.type == 11}}' class="liveTypeBox">
+                    <image src="/images/home/college/audios.png" wx:if='{{course.is_broad==md_dict.liveType.AUDIO}}'></image>
+                    <image src="/images/home/college/videos.png" wx:if='{{course.is_broad==md_dict.liveType.VIDEO}}'></image>
+                    <view wx:if='{{course.liveStatus == 0}}'>
+                        <image src="/images/home/college/pre_tip.png" class="live_tip"></image>
+                        <text class="liveStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.NOSTART)}}</text>
+                    </view>
+                    <view wx:elif='{{course.liveStatus == 1}}'>
+                        <image src="/images/home/college/live_tip.gif" class="live_tip"></image>
+                        <text class="liveStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.INPROGRESS)}}</text>
+                    </view>
+                    <view wx:elif='{{course.liveStatus == 2&&(course.is_broad==md_dict.liveType.AUDIO||(course.is_broad==md_dict.liveType.VIDEO&&course.push_status==md_dict.videoStatus.END))}}'>
+                        <image src="/images/home/college/end_tip.png" class="live_tip"></image>
+                        <text class="overStatus">{{md_dict.getLiveStatus(md_dict.liveStatus.END)}}</text>
+                    </view>
+                    <view wx:elif='{{course.is_broad==md_dict.liveType.VIDEO&&course.push_status==md_dict.videoStatus.BACK}}'>
+                        <image src="/images/home/college/live_back.png" class="live_tip"></image>
+                        <text class="overStatus">{{md_dict.getVideoStatus(course.push_status)}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class='studyText'>
+                <view class='studyTextTop'>
+                    <text class="typeLess" wx:if='{{course.type == 2 && false}}'>课程</text>
+                    <text class="typeSpe" wx:elif='{{course.type == 3 && false}}'>专栏</text>
+                    <text class="typeLive" wx:elif='{{course.type == 11 && false}}'>直播</text> 
+                    {{md_common.replaceLive(course.product_name)}}
+                </view>
+                <view class='courseTextBottom'>
+                    <view class='courseType'>
+                        <text wx:for='{{course.tags}}' wx:for-index="idx" wx:for-item="tags">{{tags}}</text>
+                    </view>
+                    <text wx:if='{{(course.type == 11) && (course.liveStatus == 0)}}' class='courseStudyNum'>{{md_common.isEmpty(course.liveSub)? 0 : md_common.propleFilter(course.liveSub)}}人预约</text>
+                    <text wx:else class='courseStudyNum'>{{md_common.isEmpty(course.learn_num)? 0 : md_common.propleFilter(course.learn_num)}}人学习</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="pageLoading" wx:if="{{!isCosLast && (tabShowFlag == '1') && (courseArr.length != 0)}}">
+        <text>●</text>
+        <text>●</text>
+        <text>●</text>
+    </view>
+    <view class='nomore' wx:if="{{isCosLast && (tabShowFlag == '1') && (courseArr.length != 0)}}">-没有更多内容-</view>
+    <!-- 学习历史缺省页 -->
+    <view class='default' wx:if="{{isLoad && (tabShowFlag == '0') && (historyArr.length == 0) && isHisLast}}">
+        <image src='/images/common/studyDefault.png'></image>
+        <text>还没有学习历史哦</text>
+    </view>
+    <!-- 已购课程缺省页 -->
+    <view class='default' wx:if="{{isLoad && (tabShowFlag == '1') && (courseArr.length == 0) && isCosLast}}">
+        <image src='/images/common/studyDefault.png'></image>
+        <text>还没有购买记录哦</text>
+    </view>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

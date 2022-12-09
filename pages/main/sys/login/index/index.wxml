@@ -1,0 +1,20 @@
+<!--
+    文件描述：登录
+    创建人：卢信桥
+    创建时间：2019-12-17
+-->
+<view id='main'>
+    <view id='title'>
+        <image src='/images/main/sys/logo.png'></image>
+        <text>欢迎来到澜渟LIVE</text>
+    </view>
+    <button id='wechatLogin' open-type='getPhoneNumber' bindgetphonenumber='goWechatLogin'>微信一键登录</button>
+    <button id='phoneLogin' bindtap='goPhoneLogin'>手机号登录</button>
+    <view id='tip'>
+        未注册账号将自动注册并登录，登录即代表您已同意
+        <text bindtap='goUserAgreement'>《用户协议》</text>
+    </view>
+    <view id='version'>版本号：{{version}}</view>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

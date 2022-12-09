@@ -1,0 +1,64 @@
+<!--
+ * 文件描述：弹框插件
+ * 创建人：赵志银
+ * 创建时间：2019-08-02
+-->
+<view class='md_dialog {{(type=="tip"||type=="loading"||type=="customize_nobg")?"":"shade"}}' wx:if='{{isShow}}'>
+    <view class="loading" wx:if='{{type=="loading"}}'>
+        <image src='/components/images/loading.gif'></image>
+        <view>加载中...</view>
+    </view>
+    <view class='tip' wx:if='{{type=="tip"}}'>
+        <view>
+            <text>{{tipObj.content}}</text>
+        </view>
+    </view>
+    <view class='waiting' wx:if='{{type=="waiting"}}'>
+        <view>
+            <image src="/components/images/waiting.png"></image>
+            <text>{{waitingObj.content}}</text>
+        </view>
+    </view>
+    <view class='alert' wx:if='{{type=="alert"}}'>
+        <view class='content'>
+            <text>{{alertObj.content}}</text>
+        </view>
+        <text class='button' bindtap='tapAlert'>{{alertObj.btnText}}</text>
+    </view>
+    <view class='alertCount' wx:if='{{type=="alertCount"}}'>
+        <view class='content'>
+            <text>{{alertCountObj.content}}</text>
+        </view>
+        <text class='button' bindtap='tapAlertCount'>{{alertCountObj.btnText}}({{alertCountObj.count}}s)</text>
+    </view>
+    <view class='confirm' wx:if='{{type=="confirm"}}'>
+        <view class='content'>
+            <text>{{confirmObj.content}}</text>
+        </view>
+        <view class='button'>
+            <text bindtap='tapConfirmLeft'>{{confirmObj.leftText}}</text>
+            <text bindtap='tapConfirmRight'>{{confirmObj.rightText}}</text>
+        </view>
+    </view>
+    <view class='contentBox' wx:if='{{type=="content"}}'>
+        <text class='title'>提示</text>
+        <slot></slot>
+    </view>
+    <!-- --------------- 中间有输入框 ---------------- -->
+    <view class='inputBox' wx:if='{{type=="inputBox"}}'>
+        <text class='title'>提示</text>
+        <input placeholder="请输入手机号码" maxlength="11" type="tel" bindinput="getInput" />  
+        <view class='button'>
+            <text bindtap='tapConfirmLeft'>{{confirmObj.leftText}}</text>
+            <text bindtap='tapConfirmRight'>{{confirmObj.rightText}}</text>
+        </view>
+    </view>
+    <!-- --------------- 自定义弹框内容 ---------------- -->
+    <view class='customize' wx:if='{{type=="customize"}}'>
+        <slot></slot>
+    </view>
+    <!-- --------------- 自定义弹框内容无遮罩层 ---------------- -->
+    <view class='customize' wx:if='{{type=="customize_nobg"}}'>
+        <slot></slot>
+    </view>
+</view>

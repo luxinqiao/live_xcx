@@ -1,0 +1,24 @@
+{
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/pkgs/college/pages/live/audio/index/index",
+                    "pathName": "pages/pkgs/college/pages/live/audio/index/index",
+                    "query": "roomId=460034603&liveName=%E9%AA%8C%E6%94%B6%E5%B0%8F%E7%A8%8B%E5%BA%8F&roomName=liyinAAA%E7%9B%B4%E6%92%AD%E9%97%B4&avatar=http%3A%2F%2Frightinhome.oss-cn-hangzhou.aliyuncs.com%2Fuploads%2F2020%2F02%2F24%2F86f9c4e96a63fbc39f508bbff6d7ac6d.png&pop=3&status=1&isPullHistory=0&liveCode=L2021111517167&room_code=R2020022486639&ppt_cover=http%3A%2F%2Frightinhome.oss-cn-hangzhou.aliyuncs.com%2Fuploads%2F2021%2F11%2F15%2F5bafd02dafa327942afbfb38893a6f39.png&isInBegintime=1",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

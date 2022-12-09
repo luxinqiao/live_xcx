@@ -1,0 +1,104 @@
+<!--
+    文件描述：直播主页
+    创建人：卢信桥
+    创建时间：2019-07-02
+ -->
+<wxs module='wxs' src='index.wxs'></wxs>
+<wxs module='commonWxs' src='../../../../../../../utils/common.wxs'></wxs>
+<wxs module='dictWxs' src='../../../../../../../utils/dict.wxs'></wxs>
+<view id='banner' wx:if='{{isBannerShow}}'>
+    <swiper current='{{currBanner}}' bindanimationfinish='finishCurrBanner'>
+        <block wx:for='{{bannerArr}}' wx:key='key'>
+            <swiper-item>
+                <image src='{{item}}' style='width:100%;height:100%;' mode='{{bannerArr.length>1?"aspectFit":"aspectFill"}}' data-url='{{item}}' bindtap='previewPpt'></image>
+            </swiper-item>
+        </block>
+    </swiper>
+    <text class='page' wx:if='{{bannerArr.length>1}}'>{{currBanner+1}}/{{bannerArr.length}}</text>
+</view>
+<view id='title'>
+    <image id='titleHead' mode='aspectFill' src='{{paramObj.avatar}}'></image>
+    <view id='titleText'>{{commonWxs.replaceLive(paramObj.roomName)}}</view>
+    <view id='titlePop'>
+        <text>{{paramObj.pop}}人气</text>
+        <text>|</text>
+        <text>{{dictWxs.getRoomStatus(paramObj.status, paramObj.isPullHistory)}}</text>
+    </view>
+	<view id='titleFollow' class='follow' bindtap='setFollow' wx:if='{{isMsgLoad&&isFollow}}'>已关注</view>
+	<view id='titleFollow' class='unfollow' bindtap='setFollow' wx:if='{{isMsgLoad&&!isFollow}}'><text class='add'>+</text>关注</view>
+	<button id='titleShare' open-type='share' wx:if='{{isMsgLoad}}'>
+		<view>分享</view>
+	</button>
+</view>
+<view id='titleUp' bindtap='changeBannerShow'>
+    <image src='{{wxs.getArrow(isBannerShow)}}'></image>
+</view>
+
+<scroll-view id='content' scroll-y style='height:{{wxs.getScrollHeight(isBannerShow, isMsgLoad, paramObj.status, paramObj.isPullHistory)}}' bindscroll='scrollContent' scroll-top='{{scrollTop}}'>
+    <image id='toTop' src='../../../../images/live/to-top.png' wx:if='{{isToTopShow}}' bindtap='goTop' style='top:{{isBannerShow?"590rpx":"170rpx"}}'></image>
+    <image id='toBottom' src='../../../../images/live/to-bottom.png' wx:if='{{isToTopShow}}' bindtap='goBottom' style='top:{{isBannerShow?"640rpx":"220rpx"}}'></image>
+    <view id='msgList'>
+        <image class='msgLoading' src='/images/common/loading.gif' wx:if='{{!isMsgLoad && msgArr.length==0}}'></image>
+        <view class='msgItem' wx:for='{{msgArr}}' wx:key='key' wx:if='{{item.type==dictWxs.liveMsgType.TEXT||item.type==dictWxs.liveMsgType.IMAGE||item.type==dictWxs.liveMsgType.AUDIO}}'>
+            <image src='{{commonWxs.convertAvatar(item.user_avatar)}}'></image>
+            <view>
+                <view>
+                    <text>{{item.user_name}}</text>
+					<text class='{{wxs.getIdentityClass(item.ext)}}'>{{wxs.getIdentity(item.ext)}}</text>
+                </view>
+                <view>
+                    <text wx:if='{{item.type==dictWxs.liveMsgType.TEXT}}' class='text'>{{item.content.msg}}</text>
+                    <image wx:if='{{item.type==dictWxs.liveMsgType.IMAGE}}' class='image' src='{{item.extend.newUrl}}' mode='widthFix' data-url='{{item.extend.newUrl}}' bindtap='previewImg'></image>
+                    <view wx:if='{{item.type==dictWxs.liveMsgType.AUDIO}}' class='audio' data-data='{{item}}' data-i='{{index}}' bindtap='tapAudio' style='width:{{wxs.getAudiowidth(item.content.dur)+"rpx"}}'>
+                        <image class='play' hidden='{{item.extend.playStatus!="stop"}}' src='../../../../images/live/voice-pause.png'></image>
+                        <image class='play' hidden='{{item.extend.playStatus!="play"}}' src='../../../../images/live/voice-play.png'></image>
+                        <image class='play loading' hidden='{{item.extend.playStatus!="loading"}}' src='/images/common/loading.gif'></image>
+                        <view class='dur'>{{wxs.getFixed(item.content.dur/1000, 0)}}''</view>
+                        <text class='read' wx:if='{{!item.extend.isRead}}'></text>
+                        <movable-area class='progress' wx:if='{{item.extend.playStatus=="play"}}'>
+                            <view class='hasPlay' style='width:{{wxs.getHasPlaywidth(item.extend.percent)}}'></view>
+                            <movable-view class='mark' direction='horizontal' x='{{wxs.getAudioX(item.extend.percent, item.content.dur, rpxRatio)}}' bind:touchstart='' bindchange='audioXChange' bind:touchend=''>
+                                <view></view>
+                            </movable-view>
+                            <view class='unPlay' style='width:{{wxs.getUnPlaywidth(item.extend.percent)}}'></view>
+                        </movable-area>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view id='comment' style='bottom:{{wxs.getCommentBottom(paramObj.status, paramObj.isPullHistory, isIphoneX)}}' wx:if='{{isMsgLoad}}'>
+        <text hidden='{{!isCommentMarkShow}}' bindtap='goComment'>互动</text>
+        <text bindtap='changeCommentShow'>{{isCommentMarkShow?"关":"互"}}</text>
+    </view>
+    <view id='commentList' style='bottom:{{wxs.getCommentListBottom(paramObj.status, paramObj.isPullHistory, isIphoneX)}}' wx:if='{{isCommentMarkShow&&isMsgLoad}}'>
+        <view class='commentItem' wx:for='{{wxs.getThirdComments(commentArr)}}' wx:key='key' wx:if='{{item.type==dictWxs.liveMsgType.CUSTOM}}' bindtap='goComment'>
+            <view class='text_ellipsis3'>
+                <image src='{{commonWxs.convertAvatar(item.user_avatar)}}'></image>
+                <text>{{item.content.text}}</text>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+
+<view id='sendComment' wx:if='{{paramObj.status!=dictWxs.roomStatus.END && paramObj.isPullHistory=="0" && platform!="windows"}}' hidden='{{!isMsgLoad}}'>
+	<mdInput inputType='textarea' isDisabled='{{isAllMute||isMute}}' bind:send='sendComment' length='1000' btnText='发送' placeholderText='{{wxs.getMuteText(isAllMute, isMute)}}' isEmoji='{{false}}'></mdInput>
+</view>
+
+<view id='actionGuide' wx:if='{{isActionGuideShow}}'>
+	<view id='guideDialog'>
+		<view id='guideTitle'>操作指南</view>
+		<view id='guideContent'>
+			<text>1.若听不到声音请往下翻，点击语音即可播放，并确认手机没有静音，若不行可切换网络重新进入；</text>
+			<text>2.遇到卡顿和加载不出，请尝试重新进入；</text>
+			<text>3.大家可在下方评论框发起提问和交流。</text>
+		</view>
+		<view id='guideCheck' bindtap='checkActionGuide'>
+			<image src='{{isActionGuideTip?"../../../../images/live/check.png":"../../../../images/live/uncheck.png"}}'></image>
+			<text>下次不再提醒</text>
+		</view>
+		<view id='guideBtn' bindtap='hideActionGuide'>知道了</view>
+	</view>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

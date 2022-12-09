@@ -1,0 +1,43 @@
+.guide_dialog {
+    position: fixed;
+    top: 0; right: 14rpx;
+    z-index: 101;
+}
+.guide_dialog::before {
+    content: '';
+    display: block;
+    float: right;
+    margin-right: 120rpx;
+    width: 0; height: 0;
+    border-left: 10rpx solid transparent;
+    border-right: 10rpx solid transparent;
+    border-bottom: 10rpx solid rgba(0, 0, 0, 0.6);
+}
+.clear{
+    content: '';
+    display: block;
+    clear: both;
+}
+.box {
+    position: relative;
+    padding: 6rpx 10rpx;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex; align-items: center;
+    border-radius: 4rpx;
+}
+.box>view {
+    font-size: 24rpx;
+    color: #fff;
+}
+.guide_dot {
+    width: 32rpx; height: 12rpx;
+}
+.guide_logo {
+    margin: 0 4rpx;
+    width: 24rpx; height: 24rpx;
+}
+.guide_close {
+    padding: 6rpx;
+    width: 26rpx; height: 26rpx;
+    box-sizing: border-box;
+}

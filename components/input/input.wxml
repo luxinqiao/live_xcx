@@ -1,0 +1,76 @@
+<!--
+ * 文件描述：输入框组件
+ * 创建人：赵志银
+ * 创建时间：2020-02-08
+-->
+
+<wxs module='wxs'>
+    /**
+        处理时间
+        @param {String} second 时长/秒数
+        @return mm:ss的时间格式
+    */
+    var changeUnicode = function(unicode) {
+        return (decodeURIComponent(unicode))
+    }
+    /**
+        是否为空
+        @param {String}a 变量
+        @return {Boolean} 是否为空
+    */
+    var isEmpty = function(a) {
+        if (a === undefined || a === 'undefined' || a === null || a === 'null' || a === '' ||
+            JSON.stringify(a) === '{}' || JSON.stringify(a) === '[]') {
+            return true
+        }
+        return false
+    }
+    module.exports = {
+        changeUnicode: changeUnicode,
+        isEmpty: isEmpty
+    }
+</wxs>
+
+<!-- 遮罩层 -->
+<view class='content' bindtap="closeEmoji" wx:if='{{isFoucs||isShow}}'></view>
+
+
+<view class='message'>
+
+    <!-- 单行文本框 -->
+    <view class='inputMessage'  animation="{{animation}}" wx:if='{{inputType=="input"}}' style="{{isIphoneX?'min-height: 164rpx;': ''}}">
+        <input placeholder="{{placeholderText}}" adjust-position="{{false}}" bindinput='getContent' bindfocus="textFocus" bindblur="textBlur" value='{{message}}' maxlength="2000" focus="{{isFoucs}}" style='padding-right:{{isEmoji?"68rpx":"32rpx"}}'></input>
+        <image src="/components/images/emoji.png" catchtap="getEmoji" hidden='{{!isEmoji}}'></image>
+        <view catchtap='sendMessage' style="{{isIphoneX?'bottom: 78rpx;': ''}}">{{btnText}}</view>
+    </view>
+
+    <!-- 多行文本框 -->
+    <view class='comments' animation="{{animation}}" wx:if='{{inputType=="textarea"}}' style="{{isIphoneX?'min-height: 164rpx;': ''}}">
+        <view style='padding-right:{{isEmoji?"68rpx":"32rpx"}}'>
+            <textarea placeholder='{{placeholderText}}' show-confirm-bar="{{false}}" placeholder-style='color: #999;font-size: 28rpx;'  adjust-position="{{false}}" bindinput='getContent' bindfocus="textFocus" bindblur="textBlur" value='{{message}}' maxlength="{{length}}" focus="{{isFoucs}}" fixed  auto-height='{{true}}' disabled='{{isDisabled}}'></textarea>
+        </view>
+        <image src='/components/images/emoji.png' catchtap="getEmoji" hidden='{{!isEmoji}}'></image>
+        <view catchtap='sendMessage' style="{{isIphoneX?'bottom: 78rpx;': ''}}">{{btnText}}</view>
+    </view>
+
+
+    <!--emoji表情盒子-->
+    <view class="emojiBox {{isShow ? 'emojiMoveIn' : 'emojiMoveOut'}} {{isLoad ? 'noEmojiMove' : ''}}" wx:if='{{isEmoji}}'>
+        <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+            <block wx:for="{{emojiArr}}"  wx:key="index">
+                <view class="emojiCell" catchtap="emojiChoose" data-emoji="{{item}}">{{item}} </view>
+            </block>
+        </scroll-view>
+    </view>
+
+
+    <!-- 打赏文本框 -->
+    <view class='reward comments' animation="{{animation}}" wx:if='{{inputType=="reward"}}' style="{{isIphoneX?'min-height: 164rpx;': ''}}">
+        <view style="width:{{wxs.isEmpty(imgSrc)?'550rpx':'468rpx'}};">
+            <textarea placeholder='{{placeholderText}}' show-confirm-bar="{{false}}" placeholder-style='color: #999;'  adjust-position="{{false}}" bindinput='getContent' bindfocus="textFocus" bindblur="textBlur" value='{{message}}' maxlength="{{length}}" focus="{{isFoucs}}" fixed  auto-height='{{true}}' disabled='{{isDisabled}}' disable-default-padding='{{true}}'></textarea>
+        </view>
+        <image src='{{imgSrc}}' style="{{rewardImgStyle}}" catchtap="giveGift" wx:if='{{!wxs.isEmpty(imgSrc)}}'></image>
+        <view catchtap='sendMessage' style="{{isIphoneX?'bottom: 78rpx;': ''}}">{{btnText}}</view>
+    </view>
+
+</view>

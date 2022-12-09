@@ -1,0 +1,10 @@
+<!--
+ * 文件描述：进度条插件
+ * 创建人：段素栋
+ * 创建时间：2019-07-23
+-->
+<view class='progress_box' style="background-color: {{backgroundColor}}" >
+    <canvas class="progress_bg"   canvas-id="canvasProgressbg">  </canvas> 
+    <canvas class="progress_canvas"   canvas-id="canvasProgress">  </canvas> 
+    <slot></slot>   
+  </view>

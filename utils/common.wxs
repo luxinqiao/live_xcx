@@ -1,0 +1,229 @@
+/**
+    文件描述：公共工具类
+    创建人：赵志银
+    创建时间：2019-08-15
+ */
+
+/**
+    是否为空
+    @param {String}a 变量
+    @return {Boolean} 是否为空
+*/
+var isEmpty = function(a) {
+    if (a === undefined || a === 'undefined' || a === null || a === 'null' || a === '' ||
+        JSON.stringify(a) === '{}' || JSON.stringify(a) === '[]') {
+        return true
+    }
+    return false
+}
+/**
+	价格分转元
+	@param {String}price 分
+	@return {String} 元
+*/
+var priceTransition = function(price) {
+    if (isEmpty(price)) {
+        return ''
+    }
+    return Number(price) / 100
+}
+
+/**
+	价格分转元（精确到小数点后两位）
+	@param {String} price 分
+	@return {String} 元
+*/
+var priceTrasTwo = function(price) {
+    if (isEmpty(price)) {
+        return ''
+    } else {
+        var minute = price / 100;
+        return minute.toFixed(2)
+    }
+}
+
+/**
+	日期反格式化
+	@param {String}dateStr 日期
+	@param {String}separator 分隔符
+	@return {Date} 新格式日期
+*/
+var parseDate = function(dateStr, separator) {
+    if (!separator) {
+        separator = '-'
+    }
+    var dateArr = dateStr.split(separator)
+    var year = parseInt(dateArr[0])
+    let month
+    if (dateArr[1].indexOf('0') == 0) {
+        month = parseInt(dateArr[1].substring(1))
+    } else {
+        month = parseInt(dateArr[1])
+    }
+    var day = parseInt(dateArr[2])
+    return new Date(year, month - 1, day)
+}
+
+/**
+	图片压缩
+	@param {Number}width 宽
+    @param {Number}height 高
+	@return {String} 压缩链接
+*/
+var compressImg = function(width, height) {
+    return '?x-oss-process=image/auto-orient,0/resize,m_lfit,h_' + height + ',w_' + width
+}
+/**
+	头像压缩
+	@param
+	@return {String} 压缩参数
+*/
+var compressAvatar = function() {
+    return '?x-oss-process=image/auto-orient,0/resize,m_lfit,h_200,w_200'
+}
+
+/**
+    转换头像
+    @param {String} avatar 原头像
+    @return {String} 新头像
+*/
+var convertAvatar = function(avatar) {
+    if (isEmpty(avatar)) {
+        return 'https://rightinhome.oss-cn-hangzhou.aliyuncs.com/sns/avatar.png' + compressImg(100, 100)
+    }
+    if (avatar.indexOf('http:') == -1 && avatar.indexOf('https:') == -1) {
+        avatar = 'https://rightinhome.oss-cn-hangzhou.aliyuncs.com/' + avatar
+        if (avatar.indexOf('.webp') > -1) {
+            return avatar + '?x-oss-process=image/format,jpg/interlace,0/resize,m_lfit,h_100,w_100'
+        }
+        return avatar + '?x-oss-process=image/auto-orient,0/resize,m_lfit,h_100,w_100'
+    }
+    return avatar
+}
+
+/**
+ *	秒转换成时分格式
+ *	@param {Number} value 时间秒数
+ *	@return {String} 分：秒
+ */
+var toFixTime = function(value) {
+    var minute = parseInt(value / 60);
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+    var second = parseInt(value % 60);
+    if (second < 10) {
+        second = '0' + second;
+    }
+    return minute + ':' + second;
+}
+
+/**
+ *	秒转换成时分秒格式
+ *	@param {Number} value 时间秒数
+ *	@return {String} 时：分：秒
+ */
+var secondToTime = function(second) {
+    var h = Math.floor(second / 3600) < 10 ? '0' + Math.floor(second / 3600) : Math.floor(second / 3600);
+    var m = Math.floor((second / 60 % 60)) < 10 ? '0' + Math.floor((second / 60 % 60)) : Math.floor((second / 60 % 60));
+    var s = Math.floor((second % 60)) < 10 ? '0' + Math.floor((second % 60)) : Math.floor((second % 60));
+    var result = ''
+    if (h == '00') {
+        result = m + ":" + s;
+    } else {
+        result = h + ":" + m + ":" + s;
+    }
+
+    return result;
+}
+
+/**
+    转换默认订单图片
+    @param {String} img 图片
+    @return {String} 转换后的图片
+ */
+var defaultOrderImg = function(img) {
+    if (isEmpty(img)) {
+        return '/images/main/common/defaultOrder.png'
+    }
+    return img
+}
+
+/**
+ * 过滤人数
+ * @param {Number} peopleNum 人数
+ * @return {String} 过滤后的人数
+ */
+var propleFilter = function(peopleNum) {
+    if (!peopleNum && peopleNum != 0) {
+        return
+    }
+    if (parseInt(peopleNum) < 10000) {
+        return peopleNum
+    } else if (parseInt(peopleNum) < 100000000) {
+        var w = Math.floor(parseInt(peopleNum) / 1000) / 10
+        return w.toFixed(1) + 'w'
+    } else {
+        var y = Math.floor(parseInt(peopleNum) / 10000000) / 10
+        return y.toFixed(1) + 'y'
+    }
+}
+
+/**
+    是否为正常版
+    @param {String} type 状态
+    @return {Boolean} 是否正常版
+ */
+var checkVersion = function(type) {
+    return type == '0' ? true : false
+}
+
+/**
+ * 过滤字符串
+ * @param {String} str 需要过滤的字符串
+ * @param {Number} contNum 连续字符串数量
+ * @return {String} 符合要求的字符串
+ */
+var filterString = function(str, contNum) {
+    var filterStr = str
+    var num = Math.floor((filterStr.length - 1) / contNum)
+    if (num <= 0) {
+        return filterStr
+    } else {
+        var airStr = ''
+        for (var i = 0; i < num; i++) {
+            airStr = airStr + filterStr.substring(contNum * i, (contNum * (i + 1))) + ' '
+        }
+        airStr = airStr + filterStr.substring(contNum * num)
+        return airStr
+    }
+}
+
+/**
+    转LIVE
+    @param {Number}val 需要转化字符串
+    @return {String} 转化后的字符
+*/
+var replaceLive = function (val) {
+    if (isEmpty(val)) {
+        return ''
+    }
+    return val.replace('直播','LIVE')
+}
+
+module.exports = {
+    isEmpty: isEmpty,
+    priceTransition: priceTransition,
+    priceTrasTwo: priceTrasTwo,
+    parseDate: parseDate,
+    compressImg: compressImg,
+    compressAvatar: compressAvatar,
+    convertAvatar: convertAvatar,
+    toFixTime: toFixTime,
+    secondToTime: secondToTime,
+    defaultOrderImg: defaultOrderImg,
+    propleFilter: propleFilter,
+	checkVersion: checkVersion,
+    filterString: filterString,
+    replaceLive: replaceLive
+}

@@ -1,0 +1,46 @@
+.content {
+    border-top: 2rpx solid rgba(242,242,242,1);
+    padding: 32rpx;
+}
+
+.searchBox {
+    display: flex;
+    text-align: center
+}
+
+.searchView {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    width: 594rpx;
+    height: 68rpx;
+    background: rgba(246,246,246,1);
+    border-radius: 8rpx;
+}
+
+.searchView>image {
+    margin-left: 32rpx;
+    width: 26rpx;
+    height: 26rpx;
+}
+
+.searchView>input {
+    margin-left: 16rpx;
+}
+
+.searchBox>.confirm {
+    width: 100rpx;
+    height: 68rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    line-height: 60rpx;
+}
+
+.searchResult {
+    padding: 30rpx;
+    border-bottom: 2rpx solid #f8f8f8;
+}
+
+.searchResult>text {
+    font-size: 28rpx;
+}

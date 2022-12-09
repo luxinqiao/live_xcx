@@ -1,0 +1,39 @@
+<!--
+ * 文件描述：澜渟健康-我的-系统消息
+ * 创建人：殷俊
+ * 创建时间：2019-05-29
+-->
+<wxs module='wxs'>
+    /**
+		分割字符串
+		@param {String} rule 分割依据
+		@param {String} str 待处理的数据
+		@return 处理完的数据
+	*/
+    var splitString = function(rule,str) {
+        return str.split(rule)
+    }
+    module.exports = {
+        splitString: splitString
+    }
+</wxs>
+<view class='list' wx:for='{{messageListObj}}'>
+	<view class="message_title">
+		<view><text>{{item.currentDate}}</text><text>{{item.currentTime}}</text></view>
+	</view>
+	<view class="messageInfo">
+		<view class="messageName">
+			<text>{{item.name}}</text>
+			<view wx:if="{{item.is_read == 0}}"></view>
+		</view>
+		<view class="meetMessage"  wx:if="{{item.link_where == '25'}}">
+			<view>会议名称：{{wxs.splitString('|',item.content)[0]}}</view>
+			<view>开始时间：{{wxs.splitString('|',item.content)[1]}}</view>
+		</view>
+		<view class="otherMessage" wx:if="{{item.link_where != '25'}}">
+			<view>{{item.content}}</view>
+		</view>
+	</view>
+</view>
+
+<view class='nomore' wx:if='{{pageIndex==0}}'>-没有更多内容-</view>

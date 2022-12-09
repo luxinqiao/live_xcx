@@ -1,0 +1,35 @@
+<!--
+ * 文件描述：实名认证
+ * 创建人：殷俊
+ * 创建时间：2019-08-27
+-->
+<view class='content'>
+    <view wx:if='{{isShowFail}}' class='header'>
+        <view>提示：{{uiRemark}}</view>
+    </view>
+    <view class='inputBox'>
+        <view class='name'>
+            <text>姓名</text>
+            <input type='text' value='{{name}}' placeholder='请输入姓名' bindinput='inputName'></input>
+        </view>
+        <view class='card'>
+            <text>身份证号</text>
+            <input type='text' value='{{card}}' placeholder='请输入身份证号' bindinput='inputCard'></input>
+        </view>
+    </view>
+    <view class='division'></view>
+    <view class='upload'>
+        <view class='uploadTitle'>请上传身份证资料</view>
+        <view class='uploadSubTitle'>
+            <text>*</text>
+            <text>上传资料仅用于认证，他人及第三方不可见</text>
+        </view>
+        <view class='uploadImg'>
+            <image bindtap='uploadFront' src='{{frontImg}}'></image>
+            <image bindtap='uploadReverse' src='{{reverseImg}}'></image>
+        </view>
+    </view>
+    <button class='submitBtn' bindtap='submit'>{{btnText}}</button>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

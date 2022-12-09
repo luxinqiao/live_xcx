@@ -1,0 +1,8 @@
+<!--
+ * 文件描述：我的-用户协议
+ * 创建人：殷俊
+ * 创建时间：2019-08-14
+-->
+<view class='content'>
+  <rich-text nodes="{{userDateObj.content}}" ></rich-text>
+</view>

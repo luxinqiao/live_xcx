@@ -1,0 +1,261 @@
+page {
+    background-color: #fafafa;
+    overflow: hidden;
+}
+#banner {
+    position: relative;
+    height: 420rpx;
+}
+#banner>view {
+    width: 100%; height: 100%;
+}
+#banner>view>.cover {
+    width: 100%; height: 100%;
+}
+#banner>view>.shadePre {
+	position: absolute; z-index:2;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background-color: rgba(0,0,0,0.6525); color: #fff;
+	font-size: 28rpx;
+}
+#banner>view>.shadeEnd {
+	position: absolute; z-index:2;
+	top: 0; bottom: 0; left: 0; right: 0;
+	background-color: rgba(0,0,0,0.6525);
+}
+#banner>view>.shadeEnd>text:nth-child(1) {
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 44rpx;
+	margin: auto;
+	height: 44rpx;
+	text-align: center; line-height: 44rpx;
+	font-size: 28rpx;
+	color: #ff0078;
+}
+#banner>view>.shadeEnd>text:nth-child(2) {
+	position: absolute;
+	left: 0; right: 0; top: 44rpx; bottom: 0;
+	margin: auto;
+	height: 44rpx;
+	text-align: center; line-height: 44rpx;
+	font-size: 28rpx;
+	color: #fff;
+}
+#banner>view>video {
+	width: 100%; height: 100%;
+}
+
+#title {
+    position: relative;
+    height: 120rpx;
+    background-color: #fff;
+}
+#titleHead {
+    position: absolute;
+    left: 24rpx; top: 22rpx;
+    width: 74rpx; height: 74rpx;
+    border-radius: 74rpx;
+}
+#titleText {
+    position: absolute;
+    left: 116rpx; top: 22rpx;
+    width: 330rpx; height: 40rpx;
+    line-height: 40rpx;
+	letter-spacing: 2rpx;
+    font-size: 28rpx; font-weight: bold;
+	color: #333;
+}
+#titlePop {
+    position: absolute;
+    left: 116rpx; top: 62rpx;
+    height: 34rpx;
+    line-height: 34rpx;
+}
+#titlePop>text {
+    float: left;
+    margin-left: 12rpx;
+    font-size: 24rpx;
+    color: #999;
+}
+#titlePop>text:nth-child(1) {
+    margin-left: 0;
+}
+#titleFollow {
+    position: absolute;
+    right: 172rpx; top: 34rpx;
+    display: flex;
+    align-items: center; justify-content: center;
+    width: 124rpx; height: 52rpx;
+    text-align: center; line-height: 52rpx;
+    border-radius: 30rpx;
+	font-size: 26rpx;
+}
+#titleFollow.follow {
+	color: #fff; background-color: rgba(204,204,204,0.8);
+}
+#titleFollow.unfollow {
+    border: 1rpx solid #ff2c79;
+	color: #ff2c79;
+}
+#titleFollow.unfollow>.add {
+	height: 52rpx;
+	line-height: 46rpx;
+    margin-right: 2rpx;
+	color: #ff2c79;
+	font-size: 36rpx;
+}
+
+#titleShare {
+    position: absolute;
+    right: 24rpx; top: 34rpx;
+    width: 124rpx; height: 52rpx;
+    display: flex;
+    align-items: center; justify-content: center;
+	text-align: center; line-height: 52rpx;
+	border: 1rpx solid #ff2c79; border-radius: 30rpx;
+	font-size: 26rpx;
+	background-color: #ff2c79; color: #fff;
+}
+#titleShare>view {
+    font-size: 26rpx;
+    color: #fff;
+}
+#titleShare>image {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto;
+    width: 18rpx; height: 12rpx;
+}
+
+#content {
+    position: relative;
+}
+#toTop {
+    position: fixed; z-index: 99;
+    top: 590rpx; right: 24rpx;
+    width: 40rpx; height: 40rpx;
+}
+#toBottom {
+    position: fixed; z-index: 99;
+    top: 640rpx; right: 24rpx;
+    width: 40rpx; height: 40rpx;
+}
+
+#msgList {
+	position: relative;
+    padding: 12rpx 0 32rpx 0;
+}
+.msgLoading {
+	position: absolute;
+	top: 30rpx; left: 0; right: 0;
+	margin: auto;
+    width: 40rpx; height: 40rpx;
+}
+.msgItem {
+    margin: 0 24rpx; padding-top: 20rpx;
+}
+.msgItem:nth-child(1) {
+    margin-top: 0;
+}
+.msgItem:last-child {
+    border-bottom: none;
+}
+.msgItem>.msgHead {
+    float: left;
+	margin-top: 6rpx;
+    width: 44rpx; height: 44rpx;
+    border-radius: 76rpx;
+}
+.msgItem>.msgContent {
+    margin-left: 60rpx;
+}
+.msgItem>.msgContent>.name {
+    color: #999;
+    font-size: 26rpx;
+}
+.msgItem>.msgContent>.identity {
+	position: relative;
+	top: -2rpx;
+    margin-left: 6rpx; padding: 0 6rpx;
+    vertical-align: middle;
+    border-radius: 2rpx;
+    font-size: 20rpx; letter-spacing: 0.5rpx;
+    color: #fff;
+}
+.msgItem>.msgContent>.identity.host, .msgItem>.msgContent>.identity.admin {
+    background-color: #7694cf;
+}
+.msgItem>.msgContent>.identity.honor {
+    background-color: #ff9f3d;
+}
+.msgItem>.msgContent>.identity.user {
+    display: none;
+}
+.msgItem>.msgContent>.text {
+    height: 40rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+.msgItem>.msgContent>image {
+	margin-top: 12rpx;
+	width: 260rpx;
+    border-radius: 8rpx;
+}
+
+#sendMsg {
+    position: absolute;
+    left: 0; right: 0;
+    padding: 26rpx 0;
+    min-height: 120rpx;
+    background-color: #fff;
+}
+.sharebtn {
+    position: relative;
+    width: 44rpx; height: 44rpx;
+    padding: 0;
+    background-color: transparent;
+}
+.sharebtn .fullimgshare {
+    width: 44rpx; height: 44rpx;
+}
+
+.liveDialog {
+	position: absolute; z-index: 99;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+.liveDialog.shade {
+    background-color: rgba(0,0,0,0.6);
+}
+.liveTip {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right:0;
+	margin: auto;
+    min-width: 300rpx; max-width: 450rpx; height: 76rpx;
+	text-align: center; line-height: 76rpx;
+    border-radius: 8rpx;
+    background-color: rgba(0,0,0,0.8); color: #fff;
+	font-size: 28rpx;
+}
+.liveAlertCount {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right:0;
+	margin: auto;
+    width: 70%; height: 270rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+.content {
+    width: 100%; height: 170rpx;
+    text-align: center; line-height: 120rpx;
+    font-size: 32rpx;
+	color: #333;
+	word-break: break-all;
+}
+.button {
+    width: 100%; height: 100rpx;
+    text-align: center; line-height: 100rpx;
+    font-size: 36rpx;
+    color: #ff2c79;
+    border-top: 1rpx solid #eee;
+}

@@ -1,0 +1,25 @@
+<!--
+ * 文件描述：下单-可用优惠券
+ * 创建人：赵志银
+ * 创建时间：2019-08-08
+-->
+<wxs module='md_common' src='../../../../../../utils/common.wxs'></wxs>
+<view class='content'>
+    <view class='list' wx:for='{{couponDataObj}}' data-code='{{item.code}}' bindtap='chooseCoupon' data-index='{{index}}' data-use='{{item.use}}' data-price='{{item.amount}}'>
+        <image src='/images/main/pay/preOrder/common.png' wx:if='{{item.common_type==0}}'></image>
+        <image src='/images/main/pay/preOrder/pri.png' wx:if='{{item.common_type==1}}'></image>
+        <view>
+            <view class='text_ellipsis_coupon md_titlename'>
+                <text class="">{{item.name}}</text>
+            </view>
+            <text wx:if='{{item.type==0}}'>{{md_common.priceTransition(item.amount)}}元</text>
+            <text wx:if='{{item.type==1}}'>满{{md_common.priceTransition(item.full_value)}}减{{md_common.priceTransition(item.amount)}}元</text>
+            <view>{{item.begin_date}}-{{item.end_date}}</view>
+        </view>
+        <image src='/images/main/pay/index/check.png' wx:if='{{item.use}}'></image>
+        <image src='/images/main/pay/index/uncheck.png' wx:if='{{!item.use}}'></image>
+    </view>
+</view>
+<view class='btn' bindtap='goBack'>
+    <text>确定</text>
+</view>

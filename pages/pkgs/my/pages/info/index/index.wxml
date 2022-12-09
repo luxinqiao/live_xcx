@@ -1,0 +1,119 @@
+<!--
+ * 文件描述：个人信息
+ * 创建人：殷俊
+ * 创建时间：2019-07-23
+-->
+<wxs module='md_dict' src='../../../../../../utils/dict.wxs'></wxs>
+
+<view class='content'>
+    <view class='list header' bindtap='changeImg'>
+        <text>头像</text>
+        <image src='{{imgUrl}}' class='img'></image>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view class='list interval'>
+        <text>昵称</text>
+        <input class='nicknameInput' placeholder='请输入您的昵称' maxlength="15" bindinput='nickNameChange' bindblur='complete' data-type='nickname' value='{{useInfoObj.uiNickName}}'></input>
+    </view>
+
+    <view class='list' wx:if='{{useInfoObj.uiRealNameAuthentication==2}}'>
+        <text>姓名</text>
+        <text>{{useInfoObj.id_realname}}</text>
+    </view>
+    <view class='list' wx:if='{{useInfoObj.uiRealNameAuthentication!=2}}'>
+        <text>姓名</text>
+        <input placeholder='请输入您的姓名' bindinput='nameChange' bindblur='complete' data-type='name' value='{{useInfoObj.id_realname}}'></input>
+    </view>
+
+    <view class='list' wx:if='{{useInfoObj.uiTelephone}}'>
+        <text>手机号</text>
+        <text>{{useInfoObj.uiTelephone}}</text>
+    </view>
+
+    <picker bindchange="changeSex" value='{{useInfoObj.uiGender-1}}' range="{{sexArr}}">
+        <view class='list'>
+            <text>性别</text>
+            <text wx:if='{{useInfoObj.uiGender==1}}'>男</text>
+            <text wx:if='{{useInfoObj.uiGender==2}}'>女</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <picker mode="date" value="{{useInfoObj.uiBirthDate}}" bindchange="changeBirthDate">
+        <view class='list'>
+            <text>出生日期</text>
+            <text>{{useInfoObj.uiBirthDate}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <picker mode="multiSelector" bindchange="zoneConfirm" bindcolumnchange='zoneChage' value="{{zoneObj.indexArr}}" range="{{zoneObj.dataArr}}">
+        <view class='position interval'>
+            <text>地区</text>
+            <text>{{useInfoObj.cityName}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <view class='list'>
+        <text>身高</text>
+        <input type="number" class='height' placeholder='请填写具体身高' bindinput='heightChange' bindblur='complete' data-type='height' value='{{useInfoObj.uiHeight}}'></input>
+        <text>cm</text>
+    </view>
+    <view class='list'>
+        <text>体重</text>
+        <input type="number" class='weight' placeholder='请填写具体体重' bindinput='weightChange' bindblur='complete' data-type='weight' value='{{useInfoObj.uiWeight}}'></input>
+        <text>kg</text>
+    </view>
+
+    <picker bindchange="changeChildCount" value='{{gp}}' range="{{childArr}}">
+        <view class='list'>
+            <text>分娩次数</text>
+            <text>{{childbirthDate}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <picker mode="date" value="{{useInfoObj.delivery_date}}" bindchange="changeBirthTime">
+        <view class='list' wx:if='{{(gp!=md_dict.deliverCount.UNFERTILITY)&&(gp!=md_dict.deliverCount.NOFILED)}}'>
+            <text>最近分娩时间</text>
+            <text>{{useInfoObj.delivery_date}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <picker bindchange="changeMisCount" value='{{misnum}}' range="{{childmisArr}}">
+        <view class='list'>
+            <text>流产次数</text>
+            <text>{{mischildDate}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <picker mode="date" value="{{useInfoObj.abortion_date}}" bindchange="changeMisTime">
+        <view class='list' wx:if='{{(misnum!=md_dict.abortionCount.NONABORTION)&&(misnum!=md_dict.abortionCount.NOFILED)}}'>
+            <text>最近流产时间</text>
+            <text>{{useInfoObj.abortion_date}}</text>
+            <image src='/pages/pkgs/my/images/common/next.png'></image>
+        </view>
+    </picker>
+
+    <view class='list interval' bindtap='goAuthentication' data-height='{{useInfoObj.uiHeight}}'>
+        <text>实名认证</text>
+        <text>{{md_dict.getRealName(useInfoObj.uiRealNameAuthentication)}}</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+
+    <view class='signature interval' bindtap='goSignature' data-sign='{{useInfoObj.sign}}'>
+        <text>个性签名</text>
+        <text>{{useInfoObj.sign}}</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view class='introduction' bindtap='goIntroduction' data-remark='{{useInfoObj.uiRemark}}'>
+        <text>个人简介</text>
+        <text>{{useInfoObj.uiRemark}}</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

@@ -1,0 +1,80 @@
+<!--
+    文件描述：视频直播
+    创建人：卢信桥
+    创建时间：2020-02-26
+ -->
+<wxs module='videoWxs' src='video.wxs'></wxs>
+<wxs module='commonWxs' src='../../../../../../utils/common.wxs'></wxs>
+<wxs module='dictWxs' src='../../../../../../utils/dict.wxs'></wxs>
+<view id='banner'>
+	<view wx:if='{{paramObj.status==dictWxs.roomStatus.PRE || paramObj.status==dictWxs.roomStatus.BEGIN && paramObj.pushStatus==dictWxs.pushStatus.PRE || paramObj.status==dictWxs.roomStatus.BEGIN && paramObj.pushStatus==dictWxs.pushStatus.END || paramObj.status==dictWxs.roomStatus.END && paramObj.pushStatus==dictWxs.pushStatus.END}}'>
+		<image class='cover' src='{{paramObj.cover + "?x-oss-process=image/resize,m_fill,l_800"}}' mode="aspectFill"></image>
+		<view class='shadePre flex_center' wx:if='{{paramObj.status==dictWxs.roomStatus.BEGIN && paramObj.pushStatus==dictWxs.pushStatus.PRE}}'>
+			直播准备中，请稍等...
+		</view>
+		<view class='shadeEnd' wx:if='{{paramObj.status==dictWxs.roomStatus.BEGIN && paramObj.pushStatus==dictWxs.pushStatus.END}}'>
+			<text>休息中</text>
+			<text>在下方聊天区互动吧</text>
+		</view>
+		<view class='shadeEnd' wx:if='{{paramObj.status==dictWxs.roomStatus.END && paramObj.pushStatus==dictWxs.pushStatus.END}}'>
+			<text>直播已结束</text>
+			<text>视频正在剪辑中，稍后可观看回放哦</text>
+		</view>
+	</view>
+    <view wx:if='{{paramObj.status==dictWxs.roomStatus.BEGIN && paramObj.pushStatus==dictWxs.pushStatus.BEGIN}}'>
+		<mdLive id='mdLive' videSrc='{{liveObj.currSrc}}' currentIndex='{{liveObj.currIndex}}' defineArr='{{liveObj.textArr}}' isHasShare='{{true}}' bind:getLiveSrc='changeLive' bind:autoLive='autoLowerLive'  bind:getFullScreen='changeFullScreen'>
+            <button open-type='share' slot='share' class='sharebtn'>
+                <cover-image src="../../../images/live/share.png" class='fullimgshare'></cover-image>
+            </button>
+			<cover-view slot='dialog' class='liveDialog {{liveDialogObj.type=="alertCount"?"shade":""}}' wx:if='{{liveDialogObj.isShow}}'>
+				<cover-view class='liveTip' wx:if='{{liveDialogObj.type == "tip"}}'>{{liveDialogObj.tip}}</cover-view>
+				<cover-view class='liveAlertCount' wx:if='{{liveDialogObj.type == "alertCount"}}'>
+					<cover-view class='content'>{{liveDialogObj.alertCountMsg}}</cover-view>
+					<cover-view class='button' bindtap='tapAlertCount'>确定({{liveDialogObj.alertCount}}s)</cover-view>
+				</cover-view>
+			</cover-view>
+        </mdLive>
+	</view>
+	<view wx:if='{{paramObj.status==dictWxs.roomStatus.END && paramObj.pushStatus==dictWxs.pushStatus.BACK}}'>
+		<video id='backPlay' src="{{playBackUrl}}" poster='{{paramObj.cover}}' autoplay></video>
+	</view>
+</view>
+
+<view id='title'>
+    <image id='titleHead' mode='aspectFill' src='{{paramObj.avatar}}'></image>
+    <view id='titleText' class='text_ellipsis'>{{commonWxs.replaceLive(paramObj.roomName)}}</view>
+    <view id='titlePop'>
+        <text>{{paramObj.pop}}人气</text>
+        <text>|</text>
+        <text>{{dictWxs.getRoomStatus(paramObj.status, paramObj.isPullHistory)}}</text>
+    </view>
+    <view id='titleFollow' class='follow' bindtap='setFollow' wx:if='{{isMsgLoad&&isFollow}}'>已关注</view>
+	<view id='titleFollow' class='unfollow' bindtap='setFollow' wx:if='{{isMsgLoad&&!isFollow}}'><text class='add'>+</text>关注</view>
+	<button id='titleShare' open-type='share' wx:if='{{isMsgLoad}}'>
+		<view>分享</view>
+	</button>
+</view>
+
+<scroll-view id='content' scroll-y style='height:{{videoWxs.getScrollHeight(isMsgLoad, paramObj.status, paramObj.isPullHistory, isIphoneX)}}' bindscroll='scrollContent' scroll-top='{{scrollTop}}' upper-threshold='150' bindscrolltoupper='scrolltoupper' scroll-into-view='msgItem{{scrollPos}}' wx:if='{{!isLiveFull}}'>
+    <image id='toTop' src='../../../images/live/to-top.png' wx:if='{{isToTopShow}}' bindtap='goTop'></image>
+    <image id='toBottom' src='../../../images/live/to-bottom.png' wx:if='{{isToTopShow}}' bindtap='goBottom'></image>
+    <view id='msgList'>
+        <image class='msgLoading' src='/images/common/loading.gif' wx:if='{{isLoading || (!isMsgLoad && msgArr.length==0)}}'></image>
+        <view class='msgItem' wx:for='{{msgArr}}' wx:key='key' id='msgItem{{index}}' wx:if='{{item.type==dictWxs.liveMsgType.TEXT || item.type==dictWxs.liveMsgType.IMAGE}}'>
+            <image class='msgHead' src='{{commonWxs.convertAvatar(item.user_avatar)}}'></image>
+            <view class='msgContent'>
+                <text class='name'>{{item.user_name}}</text>
+                <text class='identity {{videoWxs.getIdentityClass(item.ext)}}'>{{videoWxs.getIdentity(item.ext)}}</text>
+                <text class='name'>：</text>
+                <text class='text' wx:if='{{item.type==dictWxs.liveMsgType.TEXT}}'>{{item.content.msg}}</text>
+				<image class='img' wx:if='{{item.type==dictWxs.liveMsgType.IMAGE}}' src='{{item.extend.newUrl}}' mode='widthFix' data-src='{{item.extend.newUrl}}' bindtap='previewImg'></image>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+
+<view id='sendMsg' wx:if='{{paramObj.status!=dictWxs.roomStatus.END && paramObj.isPullHistory=="0" && platform!="windows" && !isLiveFull}}' hidden='{{!isMsgLoad}}'>
+    <mdInput inputType='textarea' btnText='发送' isDisabled='{{isAllMute||isMute}}' length='100' isEmoji='{{false}}' bind:send='sendMsg' placeholderText='{{videoWxs.getMuteText(isAllMute, isMute)}}'></mdInput>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

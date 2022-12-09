@@ -1,0 +1,81 @@
+{
+    "pages": [
+        "pages/pkgHome/liveList/list",
+        "pages/pkgHome/my/my",
+        "pages/main/sys/login/index/index",
+        "pages/main/sys/login/protocol/protocol",
+        "pages/main/common/pay/index/index",
+        "pages/main/common/pay/preOrder/index/index",
+        "pages/main/common/pay/preOrder/coupon/coupon",
+        "pages/main/common/address/list/list",
+        "pages/main/common/address/add/add",
+        "pages/main/common/address/edit/edit",
+        "pages/main/sys/login/phoneLogin/phoneLogin"
+    ],
+    "subpackages": [
+        {
+            "root": "pages/pkgs/college/",
+            "pages": [
+                "pages/liveDetail/liveDetail",
+                "pages/live/audio/index/index",
+                "pages/live/audio/comment/comment",
+                "pages/live/video/video"
+            ]
+        },
+        {
+            "root": "pages/pkgs/my/",
+            "pages": [
+                "pages/message/message",
+                "pages/authentication/authentication",
+                "pages/authentication/realName/realName",
+                "pages/authentication/agency/agency",
+                "pages/authentication/agency/searchHos/searchHos",
+                "pages/authentication/agency/searchDep/searchDep",
+                "pages/authentication/agency/searchPos/searchPos",
+                "pages/advice/advice",
+                "pages/info/index/index",
+                "pages/info/change/change",
+                "pages/setting/index/index",
+                "pages/setting/userAgree/userAgree",
+                "pages/menuList/studyCenter/studyCenter"
+            ]
+        }
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "澜渟LIVE",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json",
+    "requiredBackgroundModes": [
+        "audio"
+    ],
+    "tabBar": {
+        "list": [
+            {
+                "selectedIconPath": "images/tabbar/college-active.png",
+                "iconPath": "images/tabbar/college.png",
+                "pagePath": "pages/pkgHome/liveList/list",
+                "text": "LIVE"
+            },
+            {
+                "selectedIconPath": "images/tabbar/my-active.png",
+                "iconPath": "images/tabbar/my.png",
+                "pagePath": "pages/pkgHome/my/my",
+                "text": "我的"
+            }
+        ],
+        "selectedColor": "#EF5E8F",
+        "color": "#888888",
+        "borderStyle": "white"
+    },
+    "usingComponents": {
+        "mdDialog": "components/dialog/dialog",
+        "mdCircular": "components/circular/circular",
+        "mdPopup": "components/popup/popup",
+        "mdLive": "components/live/live",
+        "mdInput": "components/input/input",
+        "mdWxAuth": "components/wxAuth/wxAuth"
+    }
+}

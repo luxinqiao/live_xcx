@@ -1,0 +1,122 @@
+.content {
+    padding-top: 82rpx;
+}
+
+/** ************ 标题 ************** */
+.title {
+    position: relative;
+    height: 74rpx;
+}
+
+.title>image {
+    position: absolute;
+    width: 52rpx; height: 72rpx;
+    top: 6rpx; left: 28rpx;
+}
+
+.title>text {
+    position: absolute;
+    top: 0; left: 100rpx;
+    height: 74rpx;
+    line-height: 74rpx;
+    color: #333;
+    font-size: 52rpx; font-weight: bold;
+    letter-spacing: 2rpx;
+}
+
+/** ************ input输入框 ************** */
+.inputContent {
+    margin: 96rpx auto 36rpx auto; padding: 0 32rpx;
+}
+
+.phone {
+    position: relative;
+    border-bottom: 1rpx solid rgba(239,239,239,1);
+}
+.phone>.label {
+    font-size: 26rpx;
+}
+.phone>.login_content_phone {
+    margin: 24rpx 80rpx 0 0;
+    height: 80rpx;
+    font-size: 32rpx;
+}
+.phone>.clear {
+    position: absolute; z-index: 2;
+    bottom: 14rpx; right: 0;
+    width: 60rpx; height: 60rpx;
+}
+.phone>.clear>image {
+    position: absolute;
+    top: 0; bottom: 0; right: 0;
+    margin: auto;
+    width: 34rpx; height: 34rpx;
+}
+
+.code {
+    margin-top: 64rpx;
+}
+
+.code>view:nth-child(1) {
+    font-size: 26rpx;
+}
+
+.codeInput {
+    display: flex;
+    align-items: center; justify-content: space-between;
+    margin-top: 24rpx;
+    font-size: 32rpx;
+    border-bottom: 2rpx solid rgba(239,239,239,1);
+}
+.codeInput>input {
+    display: inline-block;
+    width: 500rpx; height: 80rpx;
+    font-size: 32rpx;
+}
+.codeInput>text {
+    display: inline-block;
+    width: 180rpx;  height: 80rpx;
+    text-align: right; line-height: 80rpx;
+    font-size: 28rpx;
+    color: #ff2c79;
+}
+
+.second {
+    color: rgba(255,44,121,1);
+}
+
+/** ************ 登录按钮 ************** */
+.login {
+    margin-top: 80rpx;
+    width: 686rpx; height: 100rpx;
+    line-height: 100rpx;
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    background-color:rgba(255,44,121,1); color:white;
+}
+.login.gray {
+    background-color: #ccc;
+}
+
+/** ************ 用户协议 ************** */
+#tip {
+    position: absolute;
+    bottom: 90rpx; left: 0; right: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 24rpx;
+    color: #999;
+}
+#tip>text {
+    font-size: 24rpx;
+    color: #7694cf;
+}
+/** ************ 版本号 ************** */
+#version {
+    position: absolute;
+    bottom: 28rpx; left: 0; right: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 22rpx;
+    color: #999;
+}

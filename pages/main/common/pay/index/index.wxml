@@ -1,0 +1,32 @@
+<!--
+ * 文件描述：支付
+ * 创建人：赵志银
+ * 创建时间：2019-08-08
+-->
+<wxs module='md_common' src='../../../../../utils/common.wxs'></wxs>
+<view class='title md_padding' wx:if="{{paramObj.type != 1 && paramObj.type != 5}}">提示：开启余额支付后，优先扣取余额，余额不足时使用微信继续支付</view>
+<view class='title md_padding' wx:if="{{paramObj.type == 1 || paramObj.type == 5}}">提示：购买后不支持退款、转让、退换，请斟酌确认</view>
+<view class='top'>
+    <view><text>￥</text><text>{{price}}</text></view>
+</view>
+<view class='moneycontent' bindtap='chooseMoney' wx:if="{{paramObj.type != 1 && paramObj.type != 5}}">
+    <view class='md_margin money'>
+        <image src='/images/main/pay/index/logo.png'></image>
+        <text>余额支付</text>
+        <text>余额{{md_common.priceTrasTwo(gold)}}元</text>
+        <image src='/images/main/pay/index/yes.png' wx:if='{{isChoose}}'></image>
+        <image src='/images/main/pay/index/no.png' wx:if='{{!isChoose}}'></image>
+    </view>
+</view>
+<view wx:if="{{paramObj.type != 1 && paramObj.type != 5}}">其他支付方式</view>
+<view class="payWay" wx:if="{{paramObj.type == 1 || paramObj.type == 5}}">支付方式</view>
+<view class='payStyle' bindtap='choosePay'>
+  <image src='/images/main/pay/index/wechatpay.png'></image>
+  <text>微信支付</text>
+  <image src='/images/main/pay/index/check.png' wx:if='{{isCheck}}'></image>
+  <image src='/images/main/pay/index/uncheck.png' wx:if='{{!isCheck}}'></image>
+</view>
+<view class='btn' bindtap='pay'>
+    <text class='{{isCheck||realPrice<=0?"":"no"}}'>确认支付</text>
+</view>
+<mdDialog id='mdDialog'></mdDialog>

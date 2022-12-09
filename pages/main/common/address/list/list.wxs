@@ -1,0 +1,15 @@
+/**
+    转换是否默认
+    @param {Boolean} isDefault 是否默认
+    @return {String} 默认字符
+*/
+var convertDefault = function (isDefault) {
+    if (isDefault == '1') {
+        return '[默认]'
+    }
+    return ''
+}
+
+module.exports = {
+    convertDefault: convertDefault
+}

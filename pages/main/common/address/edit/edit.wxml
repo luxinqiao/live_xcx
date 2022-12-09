@@ -1,0 +1,45 @@
+<!--
+    文件描述：修改地址
+    创建人：卢信桥
+    创建时间：2019-08-19
+-->
+<view id='conditionList'>
+    <view class='condition'>
+        <text>姓名</text>
+        <view>
+            <input type='text' placeholder='请填写收货人姓名' value='{{name}}' bindinput='inputName'></input>
+        </view>
+    </view>
+    <view class='condition'>
+        <text>手机号码</text>
+        <view>
+            <input type='number' placeholder='请填写手机号码' value='{{phone}}' bindinput='inputPhone'></input>
+        </view>
+    </view>
+    <view id='zone' class='md_padding'>
+        <text>所在地区</text>
+        <view class="zonePicker">
+            <picker style='width:100%;' mode='multiSelector' bindchange="zoneConfirm" bindcolumnchange='zoneChange' value='{{zoneObj.indexArr}}' range='{{zoneObj.dataArr}}'>
+                <view class='{{zoneObj.selectText=="请选择省市区"?"gray":""}}'>{{zoneObj.selectText}}</view>
+            </picker>
+        </view>
+        <image class='arrow-right' src='/images/main/common/address/arrow-right.png'></image>
+    </view>
+    <view class='condition'>
+        <text>详细地址</text>
+        <view>
+            <textarea placeholder='街道、楼牌号等' value='{{addr}}' bindinput='inputAddr'></textarea>
+        </view>
+    </view>
+    <view id='tip'>收货人姓名请放心填写，已保证您正常收货，为保护您的个人隐私，快递外包装不会注明物品内容。</view>
+</view>
+
+<view id='delete' bindtap='deleteAddress'>
+    <text>删除地址</text>
+</view>
+
+<view id='edit'>
+    <text bindtap='edit'>保存</text>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

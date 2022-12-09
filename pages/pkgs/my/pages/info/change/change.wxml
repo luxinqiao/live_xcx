@@ -1,0 +1,21 @@
+<!--
+ * 文件描述：我的-信息修改
+ * 创建人：殷俊
+ * 创建时间：2019-09-03
+-->
+<view class='content'>
+    <view class='sign' wx:if='{{type=="sign"}}'>
+        <textarea type='text' bindinput='signChange' focus='true' placeholder='请输入您的个性签名' value='{{sign}}' maxlength='25'></textarea>
+        <text class='number'>25</text>
+        <view bindtap='completeSign' class='{{isSign?"":"no"}}' data-flag='{{isSign}}'>完成</view>
+    </view>
+
+    <view class='remark' wx:if='{{type=="remark"}}'>
+        <textarea type='text' bindinput='remarkChange' focus='true' placeholder='请输入您的个人简介' value='{{remark}}' maxlength='150'></textarea>
+        <text class='number'>150</text>
+        <view bindtap='complete' class='{{isRemark?"":"no"}}' data-flag='{{isRemark}}'>完成</view>
+    </view>
+</view>
+
+
+<mdDialog id='mdDialog'></mdDialog>

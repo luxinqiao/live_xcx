@@ -1,0 +1,20 @@
+<!--
+ * 文件描述：认证
+ * 创建人：殷俊
+ * 创建时间：2019-08-21
+-->
+<wxs module='md_dict' src='../../../../../utils/dict.wxs'></wxs>
+
+<view class='content'>
+    <view class='list' bindtap='goRealName'>
+        <text>实名认证</text>
+        <text>{{md_dict.getRealName(realNameAuthen)}}</text>
+        <image wx:if='{{realNameAuthen != md_dict.realName.REALNAMEHAS}}' src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view class='list' bindtap='goAgency'>
+        <text>机构认证</text>
+        <text>{{md_dict.getAgency(agency)}}</text>
+        <image wx:if='{{agency != md_dict.agency.AGENCYHAS}}' src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+</view>
+<mdDialog id='mdDialog'></mdDialog>

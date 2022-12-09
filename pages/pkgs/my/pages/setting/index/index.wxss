@@ -1,0 +1,54 @@
+.content {
+    position: relative;
+    padding: 0 32rpx;
+    border-top: 2rpx solid rgba(242,242,242,1);
+}
+
+.content>view {
+    position: relative;
+    height: 96rpx;
+    line-height: 96rpx;
+    background-color: #fff;
+    border-bottom: 2rpx solid rgba(242,242,242,1);
+}
+
+.content>view>text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 96rpx;
+    line-height: 96rpx;
+    font-size: 32rpx;
+}
+
+.content>view>image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 12rpx;
+    height: 18rpx;
+}
+
+.content>view>text:last-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 96rpx;
+    text-align: right;
+    line-height: 96rpx;
+    font-size: 32rpx;
+    color:rgba(153,153,153,1);
+}
+
+.logout {
+    margin-top: 80rpx;
+    font-size: 32rpx;
+    width: 686rpx;
+    height: 100rpx;
+    color: white;
+    border-radius: 50rpx;
+    background-color: #ff2c79;
+    line-height: 100rpx;
+}

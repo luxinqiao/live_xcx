@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "mdHeader": "/components/header/header",
+        "mdGuideDialog": "/components/guideDialog/guideDialog"
+    },
+    "navigationBarTitleText": "全部",
+    "enablePullDownRefresh": true,
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark"
+}

@@ -1,0 +1,604 @@
+/* ************** 头部 ******************* */
+.headerImgBox{
+    position: relative
+}
+.headerImgBox .headerPopup{
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 420rpx;
+    background-color: #000;
+    opacity: 0.6
+}
+.headerImgBox .headerTitle{
+    position: absolute;
+    top: 0; left: 0;
+    height: 30rpx; width: 82rpx;
+    background-color: #BF5D7F;
+    color: #fff; line-height: 32rpx;
+    text-align: center; font-size: 20rpx;
+}
+.headerImgBox .headerTitle_start{
+    position: absolute;
+    top: 0; left: 0;
+    height: 30rpx; width: 82rpx;
+    background-color:rgba(255,44,121,1);
+    color: #fff; line-height: 32rpx;
+    text-align: center; font-size: 20rpx;
+}
+.headerImgBox .headerTitle_end{
+    position: absolute;
+    top: 0; left: 0;
+    height: 30rpx; width: 82rpx;
+    background-color: #38393C;
+    color: #fff; line-height: 32rpx;
+    text-align: center; font-size: 20rpx;
+}
+.headerImgBox .liveTypeBox{
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: center;
+    position: absolute;
+    right: 0; top: 20rpx;
+    height: 36rpx; width: 136rpx;
+    border-top-left-radius: 18rpx;
+    border-bottom-left-radius: 18rpx;
+    z-index: 2;
+}
+.headerImgBox .liveTypeBox>view:nth-child(1) {
+    display: flex; flex-direction: row; align-items: center;
+    width: 56rpx; height: 36rpx;
+    padding-left: 20rpx;
+    border-top-left-radius: 36rpx;
+    border-bottom-left-radius: 36rpx;
+    background-color: #ff2c79;
+}
+.headerImgBox .liveTypeBox>image:nth-child(1) {
+    width: 56rpx; height: 36rpx;
+}
+.headerImgBox .liveTypeBox>view:nth-child(2) {
+    position: relative;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    width: 80rpx; height: 36rpx;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.headerImgBox .liveTypeBox>view image{
+    height: 22rpx; width: 22rpx;
+    margin-right: 6rpx;
+}
+.headerImgBox .liveTypeBox text{
+    display: inline-block;
+    height: 20rpx;
+    font-size: 20rpx; line-height: 20rpx;
+    color: #fff;
+}
+.headerImgBox .trailContent{
+    display: flex; flex-direction: column; align-items: center;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 420rpx;
+}
+.trailContent .trailContentOne{
+    display: block;
+    margin: 124rpx 0 32rpx 0;
+    font-size: 28rpx; line-height: 40rpx;
+    color: #fff; 
+}
+.trailContent .word{
+    display: inline-block; margin-right: 8rpx;
+    font-size: 28rpx; line-height: 66rpx;
+    color: #fff;
+}
+.trailContent .num{
+    display: inline-block; margin-right: 10rpx;
+    font-size: 48rpx; line-height: 66rpx;
+    color: #fff;
+}
+.headerImg{
+    width: 100%;
+    height: 420rpx;
+}
+.headerContent {
+    padding: 40rpx 28rpx 30rpx 32rpx;
+}
+.headerContent .liveText {
+    position: relative; top: -8rpx;
+    display: inline-block;
+    width: 56rpx; height: 32rpx;
+    text-align: center; line-height: 28rpx;
+    color:rgba(232,98,114,1);
+    border-radius:4rpx;
+    border: 1rpx solid rgba(232,98,114,0.3);
+    background: rgba(232,98,114,0.05);
+    font-size: 20rpx;
+}
+
+.headerContent .liveTitle {
+    flex: 1;
+    font-size:32rpx; line-height: 38rpx;
+    font-weight:bold;
+    color:rgba(51,51,51,1);
+} 
+
+.headerContent .liveDetail {
+    position: relative;
+    display: flex; flex-direction: row;
+}
+.liveDetail_replace{
+    position: fixed;
+    bottom: -99999999rpx;
+    width: 686rpx;
+    font-size:24rpx;
+    line-height:36rpx;
+}
+.headerContent .liveDetail .liveDetailTitle {
+    margin: 16rpx 0 32rpx 0;
+    color:rgba(153,153,153,1);
+    flex: 1;
+    font-size:24rpx;
+    line-height:36rpx;
+    word-wrap: break-word;
+}
+.headerContent .liveDetail .moreTextArrow {
+    padding: 20rpx 0 20rpx 20rpx;
+    width: 18rpx; height: 18rpx;
+}
+.headerContent .liveDetail .collapseArrow{
+    transform: rotate(180deg);
+    padding: 20rpx 20rpx 20rpx 0;
+}
+
+.headerContent .liveTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerContent .liveTime>view:nth-child(1) {
+    height: 56rpx;
+    background:rgba(246,246,246,1);
+    border-radius:32rpx 32rpx 32rpx 32rpx;
+}
+
+.headerContent .liveTime>view:nth-child(1)>.livePeopleNum {
+    padding: 10rpx 16rpx;
+    line-height:54rpx;
+    font-size:26rpx;
+    color:rgba(102,102,102,1);
+}
+
+.headerContent .liveTime>.liveTimeDetail {
+    font-size:26rpx;
+    color:rgba(153,153,153,1);
+    line-height: 54rpx;
+}
+.coup {
+    position: relative;
+    background-color: #fff;
+}
+.couponBtn {
+    position: relative;
+    padding: 0;
+    background-color: #fff;
+}
+.coupon {
+    position: relative;
+    height: 102rpx; width: 100%;
+    border-top: 1rpx solid #f2f2f2;
+}
+.coupon>text:nth-child(1) {
+    position: absolute;
+    top: 0; bottom: 0; left: 32rpx;
+    margin: auto;
+    height: 102rpx; 
+    line-height: 102rpx;
+    font-size: 28rpx;
+}
+.coupon>view:nth-child(2) {
+    position: absolute;
+    top: 0; bottom: 0; left: 132rpx;
+    margin: auto;
+    text-align: left;
+    width: 500rpx; height: 102rpx;
+}
+.coupon>view:nth-child(2)>view {
+    display: inline-block;
+    position: relative;
+    margin-right: 16rpx;
+    width: 160rpx; height: 102rpx;
+}
+.coupon>view:nth-child(2)>view>image {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    margin: auto;
+    width: 160rpx; height: 40rpx;
+}
+.coupon>view:nth-child(2)>view>text {
+    position: absolute;
+    top: 0; left: 0;
+    width: 160rpx;
+    line-height: 102rpx; text-align: center;
+    font-size: 22rpx; color: #ff2c79;
+}
+.coupon>text:nth-child(3) {
+    position: absolute;
+    right: 52rpx; top: 0; bottom: 0;
+    margin: auto;
+    line-height: 102rpx;
+    font-size: 26rpx; color: #999;
+}
+.coupon>image:last-child {
+    position: absolute;
+    right: 32rpx; top: 0; bottom: 0;
+    margin: auto;
+    width: 18rpx; height: 18rpx;
+}
+
+/* ************** 详情 ******************* */
+.detail {
+    border-top: 1rpx solid #f2f2f2;
+    border-bottom: 1rpx solid #f2f2f2;
+}
+
+.detailContent {
+    padding: 48rpx 0 0 0;
+}
+
+.detailCaption {
+    margin: 0 32rpx 48rpx 32rpx;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+.courseFocus{
+    margin: 0 32rpx 16rpx 32rpx;
+    font-size: 28rpx; line-height: 40rpx;
+    color: #333; font-weight: bold;
+}
+.detailImg {
+    width: 100%;
+    margin: 0 auto;
+}
+.contentBox{
+    padding: 36rpx 32rpx 0 32rpx;
+}
+.detailTitle {
+    padding-top: 20rpx;
+    padding-bottom: 16rpx;
+    font-size: 28rpx;
+    color:rgba(51,51,51,1);
+    font-weight: bold;
+}
+
+.detailText {
+    margin: 0 0 48rpx 0;
+    color:rgba(102,102,102,1);
+    font-size: 28rpx;
+    line-height: 40rpx;
+}
+
+.courseTeacher {
+    display: flex;
+    height: 214rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+}
+
+.courseTeacher>image {
+    margin-top: 32rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 8rpx;
+}
+
+.courseTeacher>.teacherInfo {
+    width: 542rpx;
+    margin: 26rpx auto 0 24rpx;
+}
+
+.courseTeacher>.teacherInfo>.teacherName{
+    display: flex;
+    margin-bottom: 12rpx;
+}
+
+.courseTeacher>.teacherInfo>.teacherName>text:nth-child(1) {
+    color:rgba(51,51,51,1);
+    font-weight: bold;
+}
+
+.courseTeacher>.teacherInfo>.teacherName>view {
+    margin: 4rpx 0 0 16rpx;
+    width: 60rpx;
+    height: 30rpx;
+    background:rgba(235,94,139,1);
+    border-radius: 4rpx;  
+    opacity: 0.07;
+}
+
+.courseTeacher>.teacherInfo>.teacherName>text:nth-child(3) {
+    margin: 4rpx 0 0 -50rpx;
+    margin-top: 4rpx;
+    font-size: 20rpx;
+    color:rgba(255,44,121,1);
+}
+
+.courseTeacher>.teacherInfo>.jobTitle {
+    color:rgba(153,153,153,1);
+    font-size: 26rpx;
+}
+
+/* *************** 页脚 ***************** */
+
+.footerContent {
+    display: flex;
+    padding: 32rpx;
+}
+
+.footerContent>.headerImg {
+    width: 108rpx;
+    height: 108rpx;
+    border-radius: 108rpx;
+}
+
+.footerText {
+    margin: 16rpx 0 0 24rpx;
+}
+
+.footerText>view:nth-child(1) {
+    color:rgba(51,51,51,1);
+    font-weight: bold;
+}
+
+.footerText>view:nth-child(2) {
+    margin: 8rpx 0 0 0;
+    color:rgba(153,153,153,1);
+    font-size: 26rpx;
+}
+
+/* **************** 悬浮底部按钮 *************** */
+.bottomReplace{
+    height: 160rpx;
+}
+.fixBottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%; height: 94rpx;
+    background:rgba(255,255,255,1);
+    box-shadow: #c9c7c7 0 0 8px 0;
+}
+.fixBottom_ios{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background:rgba(255,44,121,1);
+    box-shadow: #c9c7c7 0 0 8px 0;
+}
+.fixBottom_ios view{
+    padding: 0;
+    border-radius: 0;
+    background-color: #ff2c79;
+}
+
+.fixBottom .enterBtn {
+    margin: 6rpx auto 0 auto;
+    width: 90%; height: 82rpx;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    background:rgba(255,44,121,1);
+    border-radius: 50rpx;
+    color:rgba(255,255,255,1);
+    line-height: 82rpx;
+}
+.fixBottom .enterBtn_ios{
+    margin: 0; width: 100%;
+    border-radius: 0;
+}
+.enterBtn text{
+    color: #fff
+}
+.enterBtn .price {
+    display: flex; align-items: center; justify-content: center;
+    height: 82rpx;
+}
+.fixBottom_ios .price_ios{
+    display: flex; align-items: center; justify-content: center;
+    height: 82rpx;
+}
+.fixBottom_ios .price_ios text{
+    font-size: 36rpx; line-height: 120rpx;
+    color: #fff;
+}
+.fixBottom_ios .price_ios image{
+    height: 32rpx; width: 32rpx;
+    margin-right: 12rpx; top: 0;
+}
+.enterBtn .money{
+    font-size: 36rpx; line-height: 44rpx;
+}
+.enterBtn .big{
+    font-size: 56rpx;
+}
+.enterBtn .delete{
+    font-size: 26rpx; line-height: 20rpx;
+    text-decoration: line-through;
+}
+.enterBtn .textContent{
+    display: inline-block;
+    font-size: 36rpx; line-height: 44rpx;
+}
+.enterBtn image{
+    position: relative; top: -14rpx;
+    height: 32rpx; width: 62rpx;
+}
+.password{
+    display: flex; justify-content: center; align-items: center;
+    position: fixed;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+.customize{
+    position: relative;
+    width: 540rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+.customize-content{
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    height: 206rpx;
+    border-bottom: 1px solid #f2f2f2
+}
+.customize-content text{
+    font-size: 30rpx; 
+}
+.customize-content input{
+    height: 68rpx; width: 274rpx;
+    padding: 0 16rpx;
+    background-color: #f6f6f6;
+}
+.customize-bottom{
+    display: flex; flex-direction: row;
+    height: 102rpx;
+}
+.customize-bottom view{
+    flex: 1;
+    text-align:  center; line-height: 102rpx;
+    font-size: 36rpx; border-right: 1px solid #f2f2f2 
+}
+.customize-bottom view:nth-child(2){
+    color: #ff2c79
+}  
+.footerContent .footerButton_attent{
+    background-color:  #ff2c79; color: #fff
+}
+.mdPopupBox{
+    background-color: #fff;
+    padding: 44rpx 0 0 0;
+}
+.detailContent .liveOldDetail{
+    display: inline-block;
+    padding: 0 32rpx;
+    font-size: 26rpx;
+}
+.couponContent {
+    position: relative;
+    width: 750rpx; max-height: 750rpx;
+    overflow-y: auto;
+    border-top-left-radius: 40rpx;
+    border-top-right-radius: 40rpx;
+    background-color: #fff;
+}
+.couponContent .list {
+    position: relative;
+    margin: auto; margin-bottom: 20rpx; 
+    width: 678rpx; height: 164rpx;
+    border: 1px solid #f6f6f6;
+    border-radius: 16rpx;
+    box-shadow: #f2f2f2 0 0 20px;
+}
+.couponContent .list>image:nth-child(1) {
+    position: absolute;
+    top: 0; left: 0;
+    width: 260rpx; height: 160rpx;
+}
+.couponContent .list>text:nth-child(2) {
+    position: absolute;
+    top: 0; left: 0;
+    width: 260rpx; height: 160rpx;
+    line-height: 160rpx; text-align: center;
+    font-size: 60rpx; color: #fff;
+}
+.couponContent .list>view:nth-child(3) {
+    display: -webkit-box;
+    position: absolute;
+    top: 16rpx; left: 282rpx;
+    width: 380rpx; max-height: 72rpx;
+    line-height: 36rpx; 
+    font-size: 26rpx; 
+    text-overflow: -o-ellipsis-lastline;overflow: hidden;text-overflow: ellipsis;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-clamp: 2;
+}
+.couponContent .list>view:nth-child(4) {
+    position: absolute;
+    top: 104rpx; left: 282rpx;
+    width: 380rpx; height: 30rpx;
+    line-height: 30rpx; 
+    font-size: 20rpx; color: #999;
+}
+.couponContent .list>view:nth-child(5) {
+    position: absolute;
+    bottom: 16rpx; right: 22rpx;
+    width: 106rpx; height: 48rpx;
+    line-height: 48rpx; text-align: center;
+    font-size: 24rpx; color: #ff2c79;
+    border: 1px solid #ff2c79;
+    border-radius: 30rpx;
+}
+.couponContent .list>image.has {
+    position: absolute;
+    bottom: 8rpx; right: 22rpx;
+    width: 104rpx; height: 104rpx;
+}
+.couponContent .list>view.full {
+    position: absolute;
+    top: 116rpx; left: 0;
+    width: 260rpx; height: 28rpx;
+    line-height: 28rpx; text-align: center;
+    font-size: 20rpx; color: #fff;
+}
+#mdPopup .popupBtn {
+    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 150rpx;
+    background-color: #fff
+}
+#mdPopup .replace{
+    height: 150rpx;
+}
+#mdPopup .popupBtn>text {
+    display: block;
+    margin: auto;
+    width: 686rpx; height: 98rpx;
+    line-height: 98rpx; text-align: center;
+    font-size: 32rpx; color: #fff;
+    border-radius: 50rpx;
+    background-color: #ff2c79;
+}
+.entering{
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    width: 240rpx; height: 240rpx;
+    border-radius: 12rpx;
+    background-color: #fff;  
+}
+.entering image{
+    height: 88rpx; width: 88rpx;
+}
+.entering text{
+    margin-top: 12rpx;
+    color: #ff2c79; font-size: 28rpx;
+}
+.dialog_ios{
+    display: flex; flex-direction: column;
+    align-items: center;
+    height: 732rpx; width: 582rpx;
+    padding: 40rpx 0 44rpx 0;
+    border-radius: 12rpx;
+}
+.dialog_ios view:nth-child(1){
+    margin-left: auto; margin-right: auto;
+    font-size: 36rpx; color: #666;
+}
+.dialog_ios view:nth-child(2){
+    margin-top: 50rpx; margin-left: auto;
+    margin-right: auto;
+}
+.dialog_ios view:nth-child(2) image{
+    height: 398.4rpx; width: 224rpx;
+}
+.dialog_ios button:nth-child(3){
+    margin-left: auto; margin-right: auto;
+    padding: 0;
+    width: 394rpx; height: 80rpx;
+    margin-top: 70rpx; text-align: center;
+    background-color: #ff2c79;
+    border-radius: 8rpx; line-height: 80rpx;
+    font-size: 32rpx; color: #fff;
+}

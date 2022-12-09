@@ -1,0 +1,36 @@
+<!--
+    文件描述：地址列表
+    创建人：卢信桥
+    创建时间：2019-08-19
+-->
+<wxs module='listWxs' src='list.wxs'></wxs>
+<view id='addressList' wx:if='{{dataArr.length>0}}'>
+    <view class='item' wx:for='{{dataArr}}' wx:key='{{index}}' data-address='{{item}}' bindtap='checkAddress'>
+        <view class='name'>
+            <text>{{item.contact_name}}</text>
+            <text>{{item.contact_call}}</text>
+        </view>
+        <view class='addressInfo'>
+            <text>{{item.zone}}</text>
+            <text>{{item.content}}</text>
+        </view>
+        <view class='default' data-item='{{item}}' catchtap='setDefault'>
+            <image wx:if='{{item.is_default==1}}' src='/images/main/common/address/check.png'></image>
+            <image wx:else src='/images/main/common/address/uncheck.png'></image>
+            <text>设为默认地址</text>
+        </view>
+        <view class='edit' data-item='{{item}}' catchtap='goEdit'>编辑</view>
+    </view>
+    <view class='nomore' wx:if='{{isNomoreShow}}'>-没有更多内容-</view>
+</view>
+<view id='addAddress' wx:if='{{dataArr.length>0}}'>
+    <text bindtap='goAdd'>新增地址</text>
+</view>
+
+<view id='addressEmpty' wx:if='{{dataArr.length==0&&isNomoreShow}}'>
+    <image src='/images/main/common/address/empty.png'></image>
+    <text>您还没有收货地址哦</text>
+    <text bindtap='goAdd'>新增地址</text>
+</view>
+
+<mdDialog id='mdDialog'></mdDialog>

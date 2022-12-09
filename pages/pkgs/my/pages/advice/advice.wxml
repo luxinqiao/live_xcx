@@ -1,0 +1,22 @@
+<!--
+ * 文件描述：意见反馈
+ * 创建人：殷俊
+ * 创建时间：2019-08-14
+-->
+<view class='content'>
+    <input type='text' bindinput='title' placeholder='标题' bindinput='title'></input>
+    <view>
+        <textarea type='text' bindinput='remark' placeholder='意见描述' bindinput='content' maxlength='-1'></textarea>
+        <view class='imglist'>
+            <view class='img' wx:for='{{uploadObj.picsArr}}'>
+                <image src='{{item}}'></image>
+                <image src='/pages/pkgs/my/images/advice/close.png' bindtap='cancle' data-index='{{index}}'></image>
+            </view>
+            <view class='addImg' bindtap='upload' wx:if='{{uploadObj.max>0}}'>
+                <image src='/pages/pkgs/my/images/advice/addImg.png'></image>
+            </view>
+        </view>
+    </view>
+</view>
+<view class='btn' bindtap='submit'>提交</view>
+<mdDialog id='mdDialog'></mdDialog>

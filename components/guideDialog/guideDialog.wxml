@@ -1,0 +1,11 @@
+<view class='guide_dialog' style='top:{{top}}px' wx:if='{{isShow}}'>
+    <view class='clear'></view>
+    <view class='box'>
+        <view class='text'>点击</view>
+        <image src='../images/guideDialog/guide_dot.png' class='guide_dot'></image>
+        <view class='text'>，选择</view>
+        <image src='../images/guideDialog/guide.png' class='guide_logo'></image>
+        <view class='text'>添加到我的小程序，微信下拉直达</view>
+        <image src='../images/guideDialog/close.png' class='guide_close' bindtap='close'></image>
+    </view>
+</view>

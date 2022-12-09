@@ -1,0 +1,94 @@
+.content {
+    position: relative;
+    padding: 0 32rpx;
+    border-bottom: 2rpx solid rgba(239,239,239,1);
+    border-top: 2rpx solid rgba(242,242,242,1);
+}
+
+input {
+    margin-top: 2rpx;
+    height: 100rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+    border-bottom: 2rpx solid rgba(242,242,242,1);
+    font-size: 32rpx;
+}
+
+.content>view:nth-child(2) {
+    padding: 14rpx 0 32rpx 0;
+    border-radius: 8px;
+    width: 95%;
+    background-color: white;
+}
+
+.content>view:nth-child(2)>textarea {
+    height: 208rpx;
+    width: 100%;
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: rgba(0,0,0,1);
+}
+
+.imglist {
+    margin-top: 20rpx;
+    height: 160rpx;
+}
+
+.imglist>view {
+    position: relative;
+    display: inline-block;
+    margin-right: 30rpx;
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.addImg {
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.addImg>image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.addImg>view {
+    position: absolute;
+    bottom: 20rpx;
+    width: 100%;
+    font-size: 24rpx;
+    text-align: center;
+    color: #b8b8b8;
+}
+
+.img>image:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160rpx;
+    height: 160rpx;
+}
+
+.img>image:nth-child(2) {
+    position: absolute;
+    top: -8rpx;
+    left: -8rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.btn {
+    width: 686rpx;
+    height: 100rpx;
+    margin: 80rpx auto 0 auto;
+    color: #fff;
+    text-align: center;
+    font-size: 32rpx;
+    line-height: 96rpx;
+    background-color: rgb(255,44,121);
+    border-radius: 50rpx;
+}

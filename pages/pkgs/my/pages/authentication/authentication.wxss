@@ -1,0 +1,42 @@
+.content {
+    border-top: 2rpx solid rgba(242,242,242,1);
+}
+
+.list {
+    position: relative;
+    height: 100rpx;
+    line-height: 100rpx;
+    background-color: #fff;
+    margin: 0 32rpx;
+    border-bottom: 2rpx solid rgba(242,242,242,1);
+}
+
+.list>text:nth-child(1) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    font-size: 32rpx;
+    color:rgba(0,0,0,1);
+}
+
+.list>text:nth-child(2) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 44rpx;
+    margin: auto;
+    font-size: 32rpx;
+    color:rgba(153,153,153,1);
+}
+
+.list>image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 12rpx;
+    height: 18rpx;
+}

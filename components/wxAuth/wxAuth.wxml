@@ -1,0 +1,11 @@
+<!--
+    文件描述：微信授权
+    创建人：卢信桥
+    创建时间：2021-11-02
+ -->
+ <button class='wxAuth' wx:if='{{canIUseGetUserProfile}}' bindtap='doUserProfileAuth' hover-class='none'>
+	<slot></slot>
+</button>
+<button class='wxAuth' wx:else open-type='getUserInfo' bindgetuserinfo='doUserInfoAuth' hover-class='none'>
+	<slot></slot>
+</button>

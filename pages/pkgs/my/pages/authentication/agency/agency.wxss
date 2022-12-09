@@ -1,0 +1,191 @@
+.content {
+    border-top: 2rpx soild rgba(242,242,242,1);
+}
+
+/** ************ 失败原因 ************* */
+.header {
+    padding: 22rpx 32rpx;
+    background: rgba(253,252,236,1);
+}
+
+.header>view {
+    font-size: 28rpx;
+    color: rgba(248,110,33,1);
+    line-height: 40rpx;
+}
+
+/** ********** 姓名、身份证号 *********** */
+.inputBox {
+    padding: 28rpx 32rpx;
+    background-color: white;
+}
+
+.inputBox image {
+    position: absolute;
+    right: 32rpx;
+    margin-top: 10rpx;
+    width: 12rpx;
+    height: 18rpx;
+}
+.inputBox>view {
+    line-height: 44rpx;
+}
+
+.agency {
+    display: flex;
+}
+
+.agency>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.agency>input {
+    font-size: 32rpx;
+}
+
+.agencyName {
+    margin-top: 56rpx;
+    display: flex;
+}
+
+.agencyName>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.agencyName>input {
+    font-size: 32rpx;
+}
+
+.duty {
+    margin-top: 56rpx;
+    display: flex;
+}
+
+.duty>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.duty>input {
+    font-size: 32rpx;
+}
+
+.hospital {
+    margin-top: 56rpx;
+    display: flex;
+}
+
+.hospital>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.hospital>input {
+    font-size: 32rpx;
+}
+
+.department {
+    margin-top: 56rpx;
+    display: flex;
+}
+
+.department>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.department>input {
+    font-size: 32rpx;
+}
+
+.position {
+    margin-top: 56rpx;
+    display: flex;
+}
+
+.position>text {
+    display: inline-block;
+    width: 192rpx;
+    font-size: 32rpx;
+}
+
+.position>input {
+    font-size: 32rpx;
+}
+
+/** ********** 灰色分割线 *********** */
+.division {
+    height: 24rpx;
+    background-color: #fafafa;
+}
+
+/** ********** 资料上传 *********** */
+.upload {
+    padding: 32rpx;
+}
+
+.uploadTitle {
+    font-size: 28rpx;
+}
+
+.uploadSubTitle {
+    margin-top: 16rpx;
+}
+
+.uploadSubTitle>text:nth-child(1) {
+    color: red;
+    font-size: 26rpx;
+}
+
+.uploadSubTitle>text:nth-child(2) {
+    font-size: 26rpx;
+    color:#999999;
+}
+
+.uploadImg {
+    margin-top: 48rpx;
+}
+
+.uploadImg>image {
+    margin: 0 auto;
+    width: 462rpx;
+    height: 302rpx;
+}
+
+/** ********** 提交认证 *********** */
+.submitBtn {
+    margin-top: 80rpx;
+    width: 686rpx;
+    height: 100rpx;
+    background-color: rgba(255,44,121,1);
+    border-radius: 50rpx;
+    font-size: 32rpx;
+    color: white;
+    line-height: 100rpx;
+}
+
+/** ********** 选择机构类型 *********** */
+.selAgencyType{
+    text-align: center;
+}
+
+.medical, .noMedical, .cancel{
+    font-size: 32rpx;
+    padding: 32rpx;
+}
+
+.partion {  
+    height: 30rpx;
+    background-color: #fafafa;
+}
+
+.cancel {
+    color: rgba(255,44,121,1);
+}

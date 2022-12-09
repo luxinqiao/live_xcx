@@ -1,0 +1,199 @@
+<!--
+ * 文件描述：极致学院-全部直播
+ * 创建人：赵志银
+ * 创建时间：2019-08-05
+-->
+<wxs module='md_common' src='../../../utils/common.wxs'></wxs>
+<wxs module='md_dict' src='../../../utils/dict.wxs'></wxs>
+<mdHeader title="全部" left_img_class='left_img_class' leftImgUrl='/images/common/logo.png' isHasBorder='{{false}}'></mdHeader>
+<mdGuideDialog></mdGuideDialog>
+
+<view id='content' style='padding-top:{{top}}px; height:100%'>
+    <view class='tab' wx:if='{{(tabNum===0||tabNum===1||tabNum===2) && md_common.checkVersion(globalObj.versionType)}}' style="top:{{top}}px;">
+        <view data-index='0' bindtap='changeTab' class="{{modeName== 'pre'? 'act': ''}}">
+            <text>预告</text>
+            <view></view>
+        </view>
+        <view data-index='1' bindtap='changeTab' class="{{modeName=='load'? 'act': ''}}">
+            <text>LIVE</text>
+            <view></view>
+        </view>
+        <view data-index='2' bindtap='changeTab' class="{{modeName=='has'? 'act': ''}}">
+            <text>往期回顾</text>
+            <view></view>
+        </view>
+    </view>
+    <swiper id='main' current="{{tabNum}}" bindchange="changeSwiper" style="margin-top:{{md_common.checkVersion(globalObj.versionType)?'83rpx':'0'}};height:{{modeName == 'pre' ? trailHeight + 'rpx' : (modeName == 'load' ? liveingHeight + 'rpx' : reviewHeight + 'rpx')}}" wx:if='{{tabNum===0||tabNum===1||tabNum===2}}'>
+        <swiper-item>
+            <scroll-view scroll-y='true' class='content' bindscrolltolower='onReachBottom'>
+                <view wx:if="{{preDataObj.listDataObj.length}}">
+                    <view class='list md_margin_live' wx:for='{{preDataObj.listDataObj}}' wx:key="index" data-type='{{item.type}}' data-code='{{item.live_code}}' bindtap='goDetails'>
+                        <view class="live_bgImg_box">
+                            <image class="live_bgImg" src="{{item.new_cover + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+                            <view class="liveType">
+                                <image src="/images/home/college/audios.png" wx:if='{{item.is_broad==md_dict.liveType.AUDIO}}'></image>
+                                <image src="/images/home/college/videos.png" wx:if='{{item.is_broad==md_dict.liveType.VIDEO}}'></image>
+                                <view>
+                                    <image src="/images/home/college/pre_tip.png"></image>
+                                    <text>预告</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="liveContent">
+                            <view>
+                                <!-- <text class="typeLive">直播</text> -->
+                                <text class="liveName">{{md_common.replaceLive(item.name)}}</text>
+                            </view>
+                            <view>
+                                <text wx:for='{{item.tags}}' wx:for-index='idx' wx:key="idx" wx:for-item='ite'>{{ite}}</text>
+                            </view>
+                            <view wx:if="{{item.type == 1 && item.is_pay == 0}}" class="nofree {{platform == 'Ios' ? 'nofree_ios' : ''}}" >
+                                <text>{{platform == 'Android' ? '￥' : ''}}</text>
+                                <text>{{platform == 'Android' ? item.price : ''}}</text>
+                                <text wx:if="{{item.price > 0 && platform == 'Ios'}}">付费</text>
+                                <text class="oriprice" wx:if="{{item.original_price > 0 && item.price<md_common.priceTrasTwo(item.original_price) && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                            </view>
+                            <text wx:if="{{item.is_pay == '1'}}" class='free free_buy'>立即学习</text>
+                            <text wx:if="{{item.type == '0' && item.original_price == 0 && item.is_pay == 0}}" class='free'>免费</text>
+                            <view class="timefree {{platform == 'Ios' ? 'nofree_ios' : ''}}" wx:if="{{item.type == 0}}">
+                                <text wx:if="{{item.type == '0' && item.original_price > 0 && item.is_pay == '0'}}">限时免费</text>
+                                <text class="oriprice" wx:if="{{item.original_price > 0 && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                            </view>
+                            <text wx:if="{{item.type == '2' && item.is_pay == 0}}" class='free'>加密</text>
+                            <text class='num'>{{md_common.propleFilter(item.liveSub)}}人预约</text>
+                        </view>
+                        <image class="vipType" wx:if="{{svipType == '1'}}" src="/images/home/college/svip.png"></image>
+                        <image class="vipType" wx:if="{{svipType != '1' && vipType == '1' && item.is_vip_free == '1'}}" src="/images/home/college/vip.png"></image>
+                    </view>
+                </view>
+                <view wx:if="{{!preDataObj.listDataObj.length}}" class="notLive">
+                    <image src="/images/home/college/noLive.png"></image>
+                    <text>还没有找到相关内容哦</text>
+                </view>
+                <view class="loading" wx:if="{{isSlidLoad_tr}}">
+                    <text>●</text>
+                    <text>●</text>
+                    <text>●</text>
+                </view>
+                <view class='nomore' wx:if='{{preDataObj.lastPage=="1" && preDataObj.listDataObj.length}}'>
+                    <text></text>没有更多内容
+                    <text></text>
+                </view>
+            </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <scroll-view scroll-y='true' class='content' bindscrolltolower='onReachBottom'>
+                <view class='list md_margin_live' wx:for='{{loadDataObj.listDataObj}}' wx:key="index" data-type='{{item.type}}' data-code='{{item.live_code}}' bindtap='goDetails'>
+                    <view class="live_bgImg_box">
+                        <image class="live_bgImg" src="{{item.new_cover + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+                        <view class="liveType">
+                            <image src="/images/home/college/audios.png" wx:if='{{item.is_broad==md_dict.liveType.AUDIO}}'></image>
+                            <image src="/images/home/college/videos.png" wx:if='{{item.is_broad==md_dict.liveType.VIDEO}}'></image>
+                            <view>
+                                <image src="/images/home/college/live_tip.gif"></image>
+                                <text>LIVE</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="liveContent">
+                        <view>
+                            <!-- <text class="typeLive">直播</text> -->
+                            <text class="liveName">{{md_common.replaceLive(item.name)}}</text>
+                        </view>
+                        <view>
+                            <text wx:for='{{item.tags}}' wx:key="idx" wx:for-index='idx' wx:for-item='ite'>{{ite}}</text>
+                        </view>
+                        <view class="nofree {{platform == 'Ios' ? 'nofree_ios' : ''}}" wx:if="{{item.type == 1}}">
+                            <text>{{(platform == 'Android' && item.is_pay == '0') ? '￥' : ''}}</text>
+                            <text>{{(platform == 'Android' && item.is_pay == '0') ? item.price : ''}}</text>
+                            <text wx:if="{{item.price > 0 && platform == 'Ios' && item.is_pay == '0'}}">付费</text>
+                            <text class="oriprice" wx:if="{{item.original_price > 0 && item.price<md_common.priceTrasTwo(item.original_price) && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                        </view>
+                        <text wx:if="{{item.is_pay == '1'}}" class='free free_buy'>立即学习</text>
+                        <text wx:if="{{item.type == '0' && item.original_price == 0 && item.is_pay == '0'}}" class='free'>免费</text>
+                        <view class="timefree {{platform == 'Ios' ? 'nofree_ios' : ''}}" wx:if="{{item.type == 0}}">
+                            <text wx:if="{{item.type == '0' && item.original_price > 0 && item.is_pay == '0'}}">限时免费</text>
+                            <text class="oriprice" wx:if="{{item.original_price > 0 && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                        </view>
+                        <text wx:if="{{item.type == '2' && item.is_pay == '0'}}" class='free'>加密</text>
+                        <text class='num'>{{md_common.propleFilter(item.learn_num)}}人学习</text>
+                    </view>
+                    <image class="vipType" wx:if="{{svipType == '1'}}" src="/images/home/college/svip.png"></image>
+                    <image class="vipType" wx:if="{{svipType != '1' && vipType == '1' && item.is_vip_free == '1'}}" src="/images/home/college/vip.png"></image>
+                </view>
+                <view wx:if="{{!loadDataObj.listDataObj.length}}" class="notLive">
+                    <image src="/images/home/college/noLive.png"></image>
+                    <text>还没有找到相关内容哦</text>
+                </view>
+                <view class="loading" wx:if="{{isSlidLoad_li}}">
+                    <text>●</text>
+                    <text>●</text>
+                    <text>●</text>
+                </view>
+                <view class='nomore' wx:if='{{loadDataObj.lastPage=="1" && loadDataObj.listDataObj.length}}'>
+                    <text></text>没有更多内容
+                    <text></text>
+                </view>
+            </scroll-view>
+        </swiper-item>
+        <swiper-item>
+            <scroll-view scroll-y='true' class='content' bindscrolltolower='onReachBottom'>
+                <view class='list md_margin_live' wx:key="index" wx:for='{{hasDataObj.listDataObj}}' data-type='{{item.type}}' data-code='{{item.live_code}}' bindtap='goDetails'>
+                    <view class="live_bgImg_box">
+                        <image class="live_bgImg" src="{{item.new_cover + '?x-oss-process=image/resize,m_fill,l_800'}}" mode="aspectFill"></image>
+                        <view class="liveType">
+                            <image src="/images/home/college/audios.png" wx:if='{{item.is_broad==md_dict.liveType.AUDIO}}'></image>
+                            <image src="/images/home/college/videos.png" wx:if='{{item.is_broad==md_dict.liveType.VIDEO}}'></image>
+                            <view>
+                                <image src="/images/home/college/end_tip.png" wx:if='{{item.is_broad==md_dict.liveType.AUDIO||(item.is_broad==md_dict.liveType.VIDEO&&item.push_status==md_dict.videoStatus.END)}}'></image>
+                                <image src="/images/home/college/live_back.png" wx:if='{{item.is_broad==md_dict.liveType.VIDEO&&item.push_status==md_dict.videoStatus.BACK}}'></image>
+                                <text wx:if='{{item.is_broad==md_dict.liveType.AUDIO}}'>{{md_dict.getLiveStatus_new(item.status)}}</text>
+                                <text wx:if='{{item.is_broad==md_dict.liveType.VIDEO}}'>{{md_dict.getVideoStatus(item.push_status)}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="liveContent">
+                        <view>
+                            <!-- <text class="typeLive">直播</text> -->
+                            <text class="liveName">{{md_common.replaceLive(item.name)}}</text>
+                        </view>
+                        <view>
+                            <text wx:for='{{item.tags}}' wx:key="idx" wx:for-index='idx' wx:for-item='ite'>{{ite}}</text>
+                        </view>
+                        <view class="nofree {{platform == 'Ios' ? 'nofree_ios' : ''}}" wx:if="{{item.type == 1}}">
+                            <text>{{(platform == 'Android' && item.is_pay == '0') ? '￥' : ''}}</text>
+                            <text>{{(platform == 'Android' && item.is_pay == '0') ? item.price : ''}}</text>
+                            <text wx:if="{{item.price > 0 && platform == 'Ios' && item.is_pay == '0'}}">付费</text>
+                            <text class="oriprice" wx:if="{{item.original_price > 0 && item.price<md_common.priceTrasTwo(item.original_price) && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                        </view>
+                        <text wx:if="{{item.is_pay == '1'}}" class='free_buy free'>立即学习</text>
+                        <text wx:if="{{item.type == '0' && item.original_price == 0 && item.is_pay == '0'}}" class='free'>免费</text>
+                        <view class="timefree {{platform == 'Ios' ? 'nofree_ios' : ''}}" wx:if="{{item.type == 0}}">
+                            <text wx:if="{{item.type == '0' && item.original_price > 0 && item.is_pay == '0'}}">限时免费</text>
+                            <text class="oriprice" wx:if="{{item.original_price > 0 && platform == 'Android' && item.is_pay == '0'}}">￥{{md_common.priceTrasTwo(item.original_price)}}</text>
+                        </view>
+                        <text wx:if="{{item.type == '2' && item.is_pay == '0'}}" class='free'>加密</text>
+                        <text class='num'>{{md_common.propleFilter(item.learn_num)}}人学习</text>
+                    </view>
+                    <image class="vipType" wx:if="{{svipType == '1'}}" src="/images/home/college/svip.png"></image>
+                    <image class="vipType" wx:if="{{svipType != '1' && vipType == '1' && item.is_vip_free == '1'}}" src="/images/home/college/vip.png"></image>
+                </view>
+                <view wx:if="{{!hasDataObj.listDataObj.length}}" class="notLive">
+                    <image src="/images/home/college/noLive.png"></image>
+                    <text>还没有找到相关内容哦</text>
+                </view>
+                <view class="loading" wx:if="{{isSlidLoad_re}}">
+                    <text>●</text>
+                    <text>●</text>
+                    <text>●</text>
+                </view>
+                <view class='nomore' wx:if='{{hasDataObj.lastPage=="1" && hasDataObj.listDataObj.length}}'>
+                    <text></text>没有更多内容
+                    <text></text>
+                </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+</view>
+
+<view class='page_bottom'></view>

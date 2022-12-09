@@ -1,0 +1,120 @@
+page {
+    background-color: #fafafa;
+}
+
+#conditionList {
+    background-color: #fff;
+}
+.condition {
+    margin: 0 32rpx; padding: 32rpx 0;
+    min-height: 104rpx;
+    border-top: 1rpx solid #efefef;
+    background-color: #fff;
+}
+.condition>text:nth-child(1) {
+    float: left;
+    width: 144rpx; height: 40rpx;
+    line-height: 40rpx;
+}
+.condition>view:nth-child(2) {
+    margin-left: 176rpx;
+    min-height: 40rpx;
+    color: #aaa;
+}
+.condition>view:nth-child(2)>input {
+    width: 100%; height: 40rpx;
+    line-height: 40rpx;
+    border: none;
+    color: #000;
+}
+.condition>view:nth-child(2)>textarea {
+    width: 100%; height: 120rpx;
+    line-height: 40rpx;
+    border: none;
+    color: #000;
+}
+#zone {
+    position: relative;
+    margin: 0 32rpx; padding: 32rpx 0;
+    border-top: 1rpx solid #efefef;
+    background-color: #fff;
+}
+#zone>text:nth-child(1) {
+    float: left;
+    width: 144rpx; height: 40rpx;
+    line-height: 40rpx;
+}
+#zone>.zonePicker:nth-child(2) {
+    margin: 0 70rpx 0 176rpx;
+    display: flex;
+    justify-content: flex-start; align-items: center;
+}
+#zone>.zonePicker:nth-child(2) view {
+    color: #000;
+}
+#zone>.zonePicker:nth-child(2) view.gray {
+    color: #888;
+}
+
+#default {
+    height: 100rpx;
+    margin: 16rpx 32rpx 0 32rpx;
+    border-top: 1rpx solid #efefef;
+    background-color: #fff;
+}
+#default>image:nth-child(1) {
+    float: left;
+    width: 36rpx; height: 36rpx;
+    margin-top: 32rpx;
+}
+#default>text:nth-child(2) {
+    float: left;
+    height: 100rpx;
+    margin-left: 16rpx;
+    line-height: 100rpx;
+}
+
+.arrow-right {
+    position: absolute;
+    top: 38rpx; right: 30rpx;
+    width: 40rpx; height: 40rpx;
+}
+
+#tip {
+    margin: 0 32rpx; padding: 18rpx 0 32rpx 0;
+    line-height: 32rpx;
+    border-top: 1rpx solid #efefef;
+    font-size: 22rpx;
+    color: #999; background-color: #fff;
+}
+
+#delete {
+    margin-top: 30rpx;
+    height: 100rpx;
+    background-color: #fff;
+}
+#delete>text {
+    margin-left: 32rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #ff2c79;
+    font-size: 32rpx;
+}
+
+#edit {
+    position: fixed;
+    left: 0; right: 0; bottom: 0; z-index: 98;
+    width: 100%; height: 132rpx;
+    border-top: 1rpx solid #f8f8f8;
+    background-color: #fff;
+}
+#edit>text {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    width: 686rpx; height: 100rpx;
+    margin: auto;
+    text-align: center; line-height: 100rpx;
+    background-color: #ff2c79; color: #fff;
+    border-radius: 50rpx;
+    font-size: 32rpx;
+}

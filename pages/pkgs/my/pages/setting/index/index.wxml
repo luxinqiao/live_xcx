@@ -1,0 +1,27 @@
+<!--
+ * 文件描述：我的-设置主页
+ * 创建人：殷俊
+ * 创建时间：2019-08-14
+-->
+<view class='content'>
+    <view bindtap='goAddress'>
+        <text>地址管理</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view bindtap='goUserAgreement'>
+        <text>用户协议</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view bindtap='goUs'>
+        <text>关于我们</text>
+        <image src='/pages/pkgs/my/images/common/next.png'></image>
+    </view>
+    <view bindtap='getVersion'>
+        <text>版本号</text>
+        <text wx:if='{{isVersion}}'>v{{version}}</text>
+        <text wx:if='{{!isVersion}}'>v{{subVersion}}</text>
+    </view>
+</view>
+<button class='logout' bindtap="logout">退出登录</button>
+
+<mdDialog id='mdDialog'></mdDialog>

@@ -1,0 +1,63 @@
+<!--
+ * 文件描述：直播组件
+ * 创建人：赵志银
+ * 创建时间：2019-07-25
+-->
+<view class='live'>
+    <video id='myVideo' poster='{{poster}}' show-play-btn="{{false}}" objectFit="contain" controls="{{false}}" style="width: 750rpx; height: 420rpx" show-center-play-btn='{{false}}'  src="{{videoSrc}}" bindplay="onPlay" bindtap="tap" autoplay ='{{true}}' bindwaiting='waitAutoChangeDialog' bindtimeupdate='closeWaitAutoChangeDialog' bindfullscreenchange='bindChangeFull'  bindpause='pause' binderror='error'>
+
+        <!-- 加载框 -->
+        <cover-view class="alreadyLoading" wx:if="{{liveStatusObj.isProgress}}" catchtap="tap">
+            <cover-image class="imgLoading" src="../images/videoLoading.png"></cover-image>
+        </cover-view>
+
+        <cover-view class="coverTop" hidden='{{!isShow}}'>
+            <cover-image src='/components/images/back.png' class='backBtn' wx:if='{{liveStatusObj.isFull}}' catchtap="exitFullScreen"></cover-image>
+
+		    <!-- 当前清晰度 -->
+            <cover-view class="{{liveStatusObj.isFull?'choiceFull':'choice'}}" catchtap='showDefine' style='{{isHasShare?(liveStatusObj.isFull?"right:126rpx; top: 54rpx;":"right:96rpx;"):""}}'><cover-view class='{{liveStatusObj.isFull?"choiceContentFull":"choiceContent"}}'>{{defineArr[currentIndex].name}}</cover-view></cover-view>
+
+            <!-- 分享 -->
+            <cover-view  class="{{liveStatusObj.isFull?'shareFull':'noshareFull'}}" wx:if='{{isHasShare}}'>
+                <slot name='share'></slot>
+            </cover-view>
+        </cover-view>
+
+        <!-- 全屏按钮 -->
+        <cover-view class="coverBottom" hidden='{{!isShow}}'>
+            <cover-image src="/components/images/screen.png" class="{{liveStatusObj.isFull?'screenBtnFull':'screenBtn'}}"  catchtap="changeFullScreen"></cover-image>
+        </cover-view>
+        
+		<!-- 弹出框 -->
+		<slot name='dialog'></slot> 
+
+        <!-- 切换的清晰度蒙层 -->
+        <cover-view class='{{liveStatusObj.isFull?"chooseFull":"choose"}}' wx:if='{{definitionObj.ischoose}}' bindtap="closeDefine">
+            <cover-view class='{{liveStatusObj.isFull?"choFull":"choose"}}'>
+                <cover-view  class='{{liveStatusObj.isFull?"titleFull":"title"}}'>清晰度</cover-view >
+                <cover-view  class='{{liveStatusObj.isFull?"listFull":"list"}} {{liveStatusObj.isFull?(index==0?"firstFull":""):(index==0?"first":"")}} {{liveStatusObj.isFull?(index==currentIndex?"actFull":""):(index==currentIndex?"act":"")}}' wx:for='{{defineArr}}' data-index="{{index}}" bindtap="choiceDefine" wx:key='{{index}}'>
+                    <cover-view class='listContentFull'>{{item.name}}</cover-view >
+                </cover-view >
+                <cover-image src='/components/images/close.png' bindtap='closeDefine' class="{{liveStatusObj.isFull?'closeBtnFull':'closeBtn'}}"></cover-image>
+            </cover-view>
+        </cover-view >
+
+
+        <slot name='reward'></slot>
+
+        <!-- 缓冲自动切换的清晰度蒙层 -->
+        <cover-view class='waitDialog' wx:if='{{liveStatusObj.isWait}}'>
+            <cover-image src='/components/images/close.png' catchtap='closeWaitDialog' class='closeBtn'></cover-image>
+            <cover-view class='waitContent'>播放卡顿，试试切换到流畅</cover-view>
+            <cover-view catchtap='switchDefin' class='switchBtn'>立即切换</cover-view>
+        </cover-view>
+
+        <!-- 蒙层 -->
+        <cover-view class='bg' hidden='isShowBg'>
+            <slot name='bg'></slot>
+        </cover-view>
+
+    </video> 
+    <view class="coverTop" wx:if='{{isShow}}'></view>
+    <view class="coverBottom" wx:if='{{isShow}}'></view>
+</view>
